@@ -1,0 +1,245 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>表单组合</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all">
+  <style type="text/css">
+    .form-container .layui-col-md6{
+      margin-bottom: 15px;
+    }
+    .require-mark {
+      color: red;
+    }
+    /*带右侧图标的input*/
+    .layui-input-icon-right,
+    .layui-input-icon-right:before{
+      position:absolute;
+      top:0px;
+      right:2px;
+      line-height:36px;
+      font-size:28px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="layui-fluid form-container">
+    <div class="layui-card">
+      <div class="layui-card-header">添加用户信息</div>
+      <div class="layui-card-body" style="padding: 15px;">
+
+        <form class="layui-form">
+          <div class="layui-form-item layui-row">
+            <div class="layui-col-md6">
+              <label class="layui-form-label">
+                <span class="require-mark">*</span>用户编号:
+              </label>
+              <div class="layui-input-block">
+                <input type="text" name="userId" lay-verify="required|number" placeholder="请输入用户名" autocomplete="off" class="layui-input">
+                <a class="layui-icon layui-icon-vercode layui-input-icon-right" style="color:#009688" id="userID" type="button" ></a>
+              </div>
+            </div>
+
+            <div class="layui-col-md6">
+              <label class="layui-form-label">
+                <span class="require-mark">*</span>登录名:
+              </label>
+              <div class="layui-input-block">
+                <input type='text' name="loginName" lay-verify="required" placeholder="请输入登录名" autocomplete="off" class="layui-input">
+                <a class="layui-icon layui-icon-vercode layui-input-icon-right" style="color:#009688" id="userName" type="button" ></a>
+              </div>
+            </div>
+          
+            <div class="layui-col-md6">
+              <label class="layui-form-label">
+                <span class="require-mark">*</span>用户姓名:
+              </label>
+              <div class="layui-input-block">
+                <input type="text" name="userName" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+              </div>
+            </div>
+
+            <div class="layui-col-md6">
+              <label class="layui-form-label">
+                <span class="require-mark">*</span>机构名称:
+              </label>
+              <div class="layui-input-block">
+                <input type="text" name="orgName" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+              </div>
+            </div>
+            <div class="layui-col-md6">
+              <label class="layui-form-label">
+                <span class="require-mark">*</span>机构编号:
+              </label>
+              <div class="layui-input-block">
+                <input type="text" name="orgNo" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+              </div>
+            </div>
+
+            <div class="layui-col-md6">
+              <label class="layui-form-label">
+                <span class="require-mark">*</span>手机号码:
+              </label>
+              <div class="layui-input-block">
+                <input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input">
+                
+              </div>
+            </div>
+          
+            <div class="layui-col-md6">
+              <label class="layui-form-label">
+                <span class="require-mark">*</span>工作邮箱:
+              </label>
+              <div class="layui-input-block">
+                 <input type="text" name="email" lay-verify="email" autocomplete="off" class="layui-input">
+              </div>
+            </div>
+            <div class="layui-col-md6">
+              <label class="layui-form-label">
+                <span class="require-mark">*</span>用户状态:
+              </label>
+              <div class="layui-input-block">
+                <select name="enable" lay-filter="enable">
+                  <option value="1">正常使用</option>
+                  <option value="0">限制用户</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="layui-col-md6">
+              <label class="layui-form-label">
+                <span class="require-mark">*</span>启用日期:
+              </label>
+              <div class="layui-input-block">
+                <input type="text" name="enableDate" id="LAY-component-form-group-date" lay-verify="required|date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+              </div>
+            </div>
+          
+            <div class="layui-col-md6">
+              <label class="layui-form-label">
+                <span class="require-mark">*</span>失效日期:
+              </label>
+              <div class="layui-input-block">
+                <input type="text" name="invalidDate" id="LAY" lay-verify="required|date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+              </div>
+            </div>
+          
+         
+          </div>
+
+          <!-- <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">普通文本域</label>
+            <div class="layui-input-block">
+              <textarea name="text" placeholder="非必输项的校验需手动添加" class="layui-textarea"></textarea>
+            </div>
+          </div> -->
+
+          <div class="layui-form-item layui-layout-admin">
+            <div class="layui-input-block">
+              <div class="layui-footer" style="left: 0;">
+                <button type="button" class="layui-btn" lay-submit="" lay-filter="addUser">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+              </div>
+            </div>
+          </div>  
+          
+        </form>
+
+      </div>
+    </div>
+  </div>
+  <script src="../../../layuiadmin/layui/layui.js"></script>  
+  <script>
+
+  layui.config({
+    base:"../../../layuiadmin"
+  }).extend({
+    comExt:"/lib/comExt"
+  }).use(['form', 'laydate','comExt','layer'], function(){
+    var form = layui.form
+    ,laydate = layui.laydate
+    ,layer = parent.layer === undefined ? layui.layer : top.layer
+    ,$ = layui.jquery
+    ,comExt = layui.comExt;
+       
+    laydate.render({
+      elem: '#LAY-component-form-group-date',
+    });
+    laydate.render({
+      elem: '#LAY',
+    });
+
+
+
+
+    /* 自定义验证规则 该页面目前没有用到（跟据需求添加校验规则）*/
+    form.verify({
+      title: function(value){
+        if(value.length < 5){
+          return '标题至少得5个字符啊';
+        }
+      },
+      pass: [/(.+){6,12}$/, '密码必须6到12位'],
+      content: function(value){
+        layedit.sync(editIndex);
+      }
+    });
+    
+	// 登录名检测
+    $('#userName').on('click',function(){
+      var checkLoginName = $('input[name="loginName"]').val();
+      if(checkLoginName.length === 0){
+        layer.msg('请输入有效内容！');
+        return;
+      } else {
+        var oReqData = { loginName: checkLoginName };
+        comExt.ajax({
+          url: "/userInfo/getUserInfoByName",
+          data: JSON.stringify(oReqData),
+          success: function(o) {
+            if (!o.success) {
+              return;
+            } else {
+             layer.msg(o.msg);
+            }
+          },
+        });
+      }
+    });
+
+
+
+    //监听提交
+    form.on("submit(addUser)",function(data){
+    	  var value = {
+    		  ...data.field,
+    		  enableDate: data.field.enableDate.split('-').join(''),
+    	  	invalidDate: data.field.invalidDate.split('-').join(''),
+    	  };
+      layer.msg(JSON.stringify(value));
+      comExt.ajax({
+            url: "/userInfo/insertUserInfo",
+            data: JSON.stringify(value),
+            success: function(o){
+                if(!o.success) {
+                  return ; 
+                }
+                parent.location.reload();
+                layer.msg("操作成功");
+              },
+        });
+        return false;
+    });
+    
+
+  });
+  </script>
+</body>
+</html>

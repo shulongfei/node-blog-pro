@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>boot业务开发</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="/layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="/layuiadmin/style/admin.css" media="all">
+  <style>
+	 body{overflow-y: scroll;}
+  </style>
+</head>
+<body class="layui-fluid">
+<div class="layui-card">
+	<div class="layui-card-body ">
+		<form class="layui-form "  style="margin-left:-45px;">
+			<div class="layui-form-item layui-row">
+				<div class=" layui-col-xs3">
+					<div class="layui-inline">
+						<label class="layui-form-label">登录名:</label>
+						<div class="layui-input-block">
+							<input name="loginNo" class="layui-input">
+						</div>
+					</div>
+				</div>
+				<div class=" layui-col-xs3">
+					<div class="layui-inline">
+						<label class="layui-form-label">机构编号:</label>
+						<div class="layui-input-block">
+							<input name="orgNo" class="layui-input">
+						</div>
+					</div>
+				</div>
+				<div class=" layui-col-xs3">
+					<div class="layui-inline">
+						<label class="layui-form-label">机构名称:</label>
+						<div class="layui-input-block">
+							<input name="orgName" class="layui-input">
+						</div>
+					</div>
+				</div>
+				<div class=" layui-col-xs3">
+					<div class="layui-inline">
+					<button  type="button" class="layui-btn" lay-submit lay-filter="searchInfo">
+						查询</button>
+					<button type="reset" class="layui-btn layui-btn-primary" >重置查询</button>
+					</div>
+				</div>
+			</div>
+
+		</form>
+		<div class=" operate-btn layui-bottom-space">
+			<button class="layui-btn " data-type="addNew">新增</button>
+			<button class="layui-btn" data-type="scanDetail">修改</button>
+			<button class="layui-btn" data-type="deleteRows">删除</button>
+		</div>
+		<table id="userList" lay-filter = "userList"></table>
+		<script type="text/html" id="table-bar">
+             	<button class="layui-btn layui-btn-md"   lay-event="detail">修改</button>
+ 				<button class="layui-btn layui-btn-md layui-bg-red"  lay-event="del">删除</button>
+        </script>
+	</div>
+</div>
+ 
+   
+ <script src="/layuiadmin/layui/layui.js?t=1"></script>
+ <script type="text/javascript">
+ layui.config({
+	    base: '/layuiadmin/' //静态资源所在路径
+	  }).extend({
+	    view: 'lib/view' //主入口模块
+    	,comExt:'lib/comExt'
+	  }).use(['form','table','layer','comExt'],function () {
+				var table = layui.table;
+				var form = layui.form;
+				var $ = layui.$,
+				layer = layui.layer,
+				comExt = layui.comExt,
+				options = {
+						elem:"#userList",
+						height: 345,//最大高度自适应
+						cellMinWidth: 40,//全局定义常规单元格的最小宽度
+						height:"full-125",
+						method : 'post',
+						url:"/demo18rest/queryList",
+						contentType:"application/json;charset=utf-8",
+						page:true,
+						request: {
+				        	  pageName: 'page' //页码的参数名称，默认：page
+				        	  ,limitName: 'rows' //每页数据量的参数名，默认：limit
+				        	}, 
+				        	 response: {
+				        	   statusName: 'success' //数据状态的字段名称，默认：code
+				        	  ,statusCode: true //成功的状态码，默认：0
+				        	  ,msgName: 'msg' //状态信息的字段名称，默认：msg
+				        	  ,countName: 'obj/jsonData/total' //数据总数的字段名称，默认：count
+				        	  ,dataName: 'obj/jsonData/rows' //数据列表的字段名称，默认：data
+				        	} ,
+						cols:[[ //表头
+						        {type:'checkbox'},
+						        {field:'id',title:'ID',align:'center'},
+						        {field:'username',title:'用户姓名',align:'center'},
+						        {field:'sex',title:'用户性别',align:'center',templet:function(d){
+					                return d.sex == "0" ? "男"  :d.sex == "1" ? "女" :"";
+					            }},
+						        {field:'password',title:'密码',align:'center'},
+						        {field:'mobile',title:'联系电话',align:'center'},
+						        {field:'hobby',title:'爱好',align:'center',templet:function(d){
+					                return formatHabits(d.hobby);
+					            }},
+					            {field:'org',title:'组名',align:'center',templet:function(d){
+					                return d.org == "0" ? "VIP"  : d.org == "1" ? "普通" : "";
+					            }},
+						        {title:"操作",align:'center', fixed: 'right', width:185, toolbar:"#table-bar"}
+						       ]]
+					};
+				
+				//初始化table
+				table.render(options);
+				
+				//监听搜索按钮事件
+				 form.on('submit(searchInfo)', function(data){
+					var searchCondition = {searchCondition : data.field};
+					options.where = searchCondition;
+			    		table.render(options);
+			    });
+				
+				//监听table内工具条
+			    table.on('tool(userList)', function(obj){
+			    	var data = obj.data;
+			        if(obj.event === 'detail'){
+			        	scanDetail(obj.data);
+			        } else if(obj.event === 'del'){
+			            deleteRows(obj.data);
+			        }
+			    });
+				
+				//监听批量操作按钮
+				$('.operate-btn').on('click','button',function(){
+					var type = $(this).data('type');
+					switch(type){
+						case "addNew":
+							addNew();
+							break;
+						case "deleteRows":
+							deleteRows();
+							break;
+						case "scanDetail":
+							scanDetail();
+							break;
+						default:
+							layer.msg("something error");
+					}
+				})
+				
+				
+				//改变窗口大小时，重置弹窗的宽高，防止超出可视区域（如F12调出debug的操作）
+				    $(window).on("resize",function(){
+				    	var index = window.sessionStorage.getItem("index");
+				    	if(!$('#layui-layer'+ index)[0]){
+				    		return;
+				    	}
+				        layui.layer.full(index);
+				    })
+				
+				function formatHabits(data){
+					if(data)
+					data = data.split(",");
+                	var text = "";
+                	layui.each(data,function(i,item){
+                		text += item== "0" ? "美食" : item == "1" ? "书籍" : item == "2" ? "旅游" : item == "3"?"电影" : "" ;
+                		if(i <data.length-2)
+                		text += ",";
+                	})
+                	return text;
+				}
+				
+				function addNew(){
+					var index = layui.layer.open({
+			            title : "新增用户信息",
+			            type : 2,
+			            anim:3,
+			            content : "addUser.html",
+			            success : function(layero, index){
+			                var body = layer.getChildFrame('body', index);
+			                    layer.tips('点击此处返回列表', '.layui-layer-setwin .layui-layer-close', {
+			                        tips: 3
+			                    });
+			            }
+			        })
+			        layer.full(index);
+					layui.sessionData("index",index);
+			       
+				}
+		        
+				function deleteRows(data){
+					if(!data){
+						var checkStatus = table.checkStatus('userList');
+						if(checkStatus.data.length == 0) {
+					         layer.msg("请选择需要删除的信息");
+					         return;
+					     }
+						data = checkStatus.data[0];
+					}
+					if(data == null ){
+						layer.msg("请选择需要删除的信息");
+						return false;
+					}
+					 
+		           	layer.confirm('确定删除选中的信息？', {title: '提示信息'}, function (index) {
+		           	comExt.ajax({
+			            url: "/demo18rest/deleteByPrimaryKey",
+			            data: JSON.stringify(data),
+			            success: function(o){
+				            	if(!o.success) return;
+				            	//局部刷新todo
+				            location.reload();
+				            layer.msg("操作成功");
+		                 }
+		        		});
+		           })
+				}
+				
+				function scanDetail(data){
+					if(!data){
+						var checkStatus = table.checkStatus('userList');
+						console.log(checkStatus.data);
+						if(checkStatus.data.length >1) {
+					         layer.msg("只能一个需要查看的数据");
+					         return;
+					         }
+						data = checkStatus.data[0];
+					}
+					if(data == null ){
+						layer.msg("请选择需要查看的机构");
+						return false;
+					}
+					var index = layer.open({
+			            title : "修改用户信息",
+			            type : 2,
+			            content : "updateUser.html",
+			            success : function(layero, index){
+			                var body = layer.getChildFrame('body', index);
+			                comExt.fillInput(body,data,form);
+			                setTimeout(function(){
+			                    layer.tips('点击此处返回列表', '.layui-layer-setwin .layui-layer-close', {
+			                        tips: 3
+			                    });
+			                },500)
+			            }
+			        })
+			        layer.full(index);
+					layui.sessionData("index",index);
+				}
+				
+				
+	        })
+	        
+	        
+			
+ </script>
+</body>
+</html>

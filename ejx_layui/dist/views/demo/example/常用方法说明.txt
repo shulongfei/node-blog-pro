@@ -1,0 +1,35 @@
+公共方法引入方式：
+layui.config({
+      base: '../../../layuiadmin/' //静态资源所在路径
+    }).extend({
+      index: 'lib/index' //主入口模块
+    }).use(['index', 'manager'], function(){
+      var add = layui.manager.add // 新增
+	       ,update = layui.manager.update // 修改
+	       ,deleteRow = layui.manager.deleteRow; // 删除
+         调用：
+         方法名(参数1,参数2,参数三……);
+    }
+1、表单提交
+add（title,content,tip）{
+	// title: 新增页面信息 (string)
+ 	// content：页面相对路径 (string)
+ 	// tip: 页面提示信息 (string)
+}
+2、表单修改
+update(title,content,tip,tableElem,data) {
+  // title: 新增页面信息 (string)
+  // content：页面相对路径 (string)
+  // tip: 页面提示信息 (string)
+  // tableElem: 表格id
+  // data： 当前修改行数据
+  注： 在当前input框中添加对应属性的id即可进行反显
+}
+3、(tableElem, id, data) {
+  // tableElem: 表格id
+  // id: 需要穿到后台的删除条件 如：id: 1
+  // data: 当前行需要删除的数据
+  注：该方法不支持批量删除
+}
+ 	
+ 	

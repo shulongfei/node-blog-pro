@@ -1,0 +1,302 @@
+@CHARSET "UTF-8";
+/* reset */
+body,p,dl,dd,blockquote,h1,h2,h3,h4,h5,h6,pre,table,td,th,ul,ol,li,hr,legend,fieldset,textarea,img,form{margin:0;padding:0;}
+html{width:100%;height:100%;border:none;}
+img,iframe{border:none;}
+p,div,td{word-break:break-all;}
+ul{list-style:none;}
+body,td,th{font:12px/18px 宋体;}
+textarea{font-size:12px;}
+.clear:after{content:".";display:block;height:0;clear:both;overflow:hidden;zoom:1}
+html,body{width:100%;height:100%}
+
+/* wrapper */
+#wrapper, #header, #content, #footer{width:960px;margin:0 auto;}
+#header{padding:5px 5px 10px;float:left;width:950px;position:relative;}
+#content{padding:0 5px 26px 5px;float:left;width:950px;}
+#footer{border-top:1px solid #d6d6d6;padding-top:21px;padding-bottom:15px;text-align:center;font-family:Arial;color:#939393;float:left;}
+.passPro{width:690px;float:left;height:500px;}
+.passAcc{width:252px;float:right;}
+
+/* left infor */
+.passPro ul{width:690px;float:left;padding-top:4px;}
+.passPro ul li{width:100%;height:70px;float:left;overflow:hidden;padding-top:10px;background:url(../images/login/index_dot.gif) repeat-x left bottom;}
+.passPro ul li.last{background:none;}
+.passPro ul li span{width:64px;height:70px;margin:0 13px 0 7px;float:left;}
+.passPro ul li h4{color:#1979de;font:14px/20px "宋体";font-weight:bold;}
+.passPro ul li p{color:#676767;}
+.passPro p.more{width:100%;float:left;text-align:right;padding-top:10px;}
+.passPro p.more a{font-family:"宋体";text-decoration:none;color:#1979de;}
+
+/* account */
+.passAcc, .passQas{position:relative;}
+.passAcc{float:right;}
+.passAcc div.shadow{width:250px;height:460px;position:absolute;top:2px;right:0;_right:1px;background:#ededed;}
+
+/* error */
+.pass-error0,.pass-error1{display:none;}
+.pass-error{width:196px;height:90px;background:url(/img/v2/err_bg.png) no-repeat 0 0;left:40px;;top:-90px;display:none;padding: 3px 9px;position:absolute;}
+/*.pass-error-title{height:38px;line-height:38px;background:url(img/err_bg.png) no-repeat 1px -90px;display:block;color:#c93737;font-weight:bold;padding-left:2em;}*/
+.pass-error-title{height:24px;line-height:24px;background:url(/img/v2/err_bg.png) no-repeat 1px -98px;display:block;color:#c93737;font-weight:bold;padding-left:2em;}
+.pass-error-a{color:#1979DE;display:none}
+.pass-error-close{position:absolute;width:11px;height:11px;background:url(/img/v2/err_bg.png) no-repeat -199px -107px;right:8px;top:8px;cursor:pointer;}
+/* login area*/
+.passAccInfo{width:248px;_width:247px;float:left;border:1px solid #cecece;background:#fbfbfb;position:relative;padding-bottom:10px;}
+.passAccInfo p.accTab{_width:247px;overflow:hidden;}
+.passAccInfo p span.tab{width:124px;_width:123px;height:34px;float:left;text-align:center;font:14px/36px "宋体";font-weight:bold;color:#757575;cursor:pointer;overflow:hidden;}
+.stab{
+	border-bottom: 1px solid #CECECE;
+}
+.stabno{
+	border-bottom: 1px solid #FFFFFF;
+}
+.passAccInfo p span.current,.passAccInfo p span.current:hover{width:123px;color:#403f3f;background:none;}
+.passAccInfo p span.tabline{width:1px;height:35px;background:#cecece;float:left;}
+.passAccInfo p span.tab b{padding:2px 0 2px 20px;}
+.passAccInfo p span.nor b{background:url(../images/login/tab_ico.png) no-repeat 0 1px;}
+.passAccInfo p span.mob b{background:url(../images/login/tab_ico.png) no-repeat 0 -20px;}
+
+.passAccForm{float:left;padding:10px 9px 20px 9px;margin:3px;float:left;background:url(../images/login/index_dot.gif) repeat-x left bottom;}
+.passAccForm form{position:relative;overflow: hidden;}
+.passAccForm p{padding-top:3px;padding-bottom:3px;}
+.passAccForm p label{width:58px;float:left;}
+.passAccForm p label.pass_login_label_rem{float:none;}
+.passAccForm p.pass-verifycode a.pass-verifypicchange{width:100%;text-align:right;}
+.passAccForm p.pass-verifycode label{width:58px;float:left;}
+.passAccForm p.pass_login_p label,.passAccForm p.accVerify label{font:14px/30px "宋体";}
+.passAccForm p.pass_login_p label.pass_login_label_rem{font:12px/16px "宋体";}
+.passAccForm p.pass-verifycode label{font:14px/30px "宋体";}
+.passAccForm p.pass_login_p input{border:1px solid #bbb;width:160px;_width:150px;height:28px;font:12px/26px Arial,"宋体";}
+.passAccForm p.pass_login_p input.pass_login_input_rem{border:0;width:14px;height:14px;margin:0 3px 0 0;vertical-align:sub;*vertical-align:auto;}
+.passAccForm p.accVerify input.ip{border:1px solid #bbb;width:60px;_width:60px;height:28px;font:12px/26px Arial,"宋体";}
+.passAccForm p.pass-verifycode input{border:1px solid #bbb;width:55px;_width:45px;height:28px;font:12px/26px Arial,"宋体";}
+.passAccForm .pass-verifypic{margin-left:5px;vertical-align:top;}
+.passAccForm .pass-verifypicchange{float:right;}
+
+.passAccForm p span.verifycode{width:160px;display:block;padding-left:58px;_padding-left:60px;}
+.passAccForm p.mespasstip{color:#676767;}
+
+.passAccForm p.pass_login_p_des{color:#bbb;}
+.passAccForm p.pass_login_p_btn input{cursor:pointer;width:97px;height:36px;text-indent:-100em;border:none;float:right;}
+.passAccForm p.pass_msg_p_btn input{cursor:pointer;width:97px;height:36px;text-indent:-100em;border:none;float:right;padding-right:145px;}
+.passAccForm p.pass_login_p_btn a{float:right;margin-top:9px;margin-left:4px;width:5em;color: #1979DE;}
+.timep{
+	float:left;margin-top:9px;margin-left:4px;width:5em;
+}
+.passAccReg{padding:6px 0 0 16px;float:left;}
+.passAccReg h3{padding-bottom:6px;font-size:14px;}
+.passAccReg div{padding-top:5px;padding-left:12px;}
+.passAccReg a{text-decoration:none;cursor:pointer;width:192px;height:29px;background:url(../images/login/btn_reg.png) repeat-x 0 0;border:1px solid #c6c6c6;color:#474747;font-weight:bold;line-height:29px;text-align:center;display:block;}
+
+/* question area */
+.passQaInfo{width:248px;height:168px;border:1px solid #cecece;background:#fbfbfb;position:relative;}
+.passQaInfo dl{padding:8px 0 10px 16px;width:232px;float:left;}
+.passQaInfo dl dt{font:14px/22px "宋体";font-weight:bold;padding-bottom:3px;}
+.passQaInfo dl dd{font:14px/21px "宋体", Arial;}
+.passQaInfo dl dd i{width:3px;height:3px;background:#1979de;font-family:Arial;line-height:0;float:left;font-size:0;margin:8px 5px 0 3px;}
+.pop-passError{height:34px;margin-bottom:3px;color:#C93737;}
+.pop-passError a,.pop-passError a:link{
+	color:#1979DE;
+	text-decoration:underline;
+}
+.passQaInfo dl dd a{text-decoration:none;color:#1979de;}
+
+.blank{width:255px;position:relative;margin-top:2px;height:8px;float:right;overflow:hidden;background:#fff;}
+
+
+/* reg page */
+#content_reg{float:left;padding-left:135px;width:825px;padding-bottom:86px;}
+.err_reg{color:#c93737;line-height:25px;display:inline-block;float:left;padding-left:5px;}
+.regVerifyCode{vertical-align:top;}
+.passRegForm{width:100%;float:left;padding-top:25px;}
+.passRegForm p{width:100%;float:left;padding-bottom:20px;}
+.passRegForm p label{width:70px;height:26px;float:left;text-align:right;padding-right:5px;font-size:14px;padding-top:3px;_padding-top:5px;}
+.passRegForm p span.ipt{width:750px;float:right;text-align:left;}
+.passRegForm p span.ipt a{color:#1979de;line-height:24px;display:inline-block;}
+.passRegForm p span.ipt input{background:#fafafa;border:1px solid #bbb;width:180px;height:23px;font-size:12px;line-height:18px;_line-height:24px;padding:0 2px;float:left;}
+.passRegForm p span.ipt span.suggest i{width:100%;float:left;font-style:normal;padding:2px 0;color:#403f3f;}
+.passRegForm p span.ipt span.suggest input{width:12px;height:12px;float:left;border:none;background:none;margin-top:5px;margin-left:0;}
+.passRegForm p span.ipt input.verifycode{width:64px;}
+.passRegForm p span.ipt span.verifypic{float:left;padding-left:5px;}
+.passRegForm p span.nfo{width:100%;float:left;padding:3px 0;color:#bbb;}
+.passRegForm p span.ipt input.regSub{background:url(../images/login/reg_b.gif) no-repeat 0 0;width:217px;height:36px;border:none;text-indent:-1000em;}
+.passRegForm p span.ipt .regAgree{width:523px;height:56px;border:1px solid #bbb;padding:5px;color:#7a7a7a;}
+.pass_reg_agreement{width:531px;height:66px;border:1px solid #BBB;margin: 30px 0 0 75px;}
+
+/* reg page */
+.pass_reg_form{width:100%;float:left;padding-top:25px;position:relative;}
+.pass_reg_form p{width:100%;padding-bottom:20px;}
+.pass_reg_form label{width:70px;height:26px;float:left;text-align:right;padding-right:5px;font-size:14px;padding-top:3px;_padding-top:5px;}
+.pass_reg_form p input.pass_reg_input{background:#fafafa;border:1px solid #bbb;width:180px;height:23px;font-size:12px;line-height:18px;_line-height:24px;padding:0 2px;float:left;}
+.pass_reg_form p ../img.pass_reg_verifycode{margin-left:75px;vertical-align:middle;}
+.pass_reg_form p span.pass_reg_change_verifycode{color:#1979de;margin-left:5px;text-decoration:underline;cursor:pointer;}
+.pass_reg_form p span.pass_reg_err,.pass_reg_form p span.pass_reg_generalerror{color:#c93737;line-height:25px;display:inline-block;float:left;padding-left:5px;}
+.pass_reg_form p span.pass_reg_generalerror{padding-left:75px;width:100%;}
+.pass_reg_form p span.pass_reg_des{clear:both;display:block;padding-left:75px;color:#bbb;}
+.pass_reg_form input.pass_reg_submit{background:url(../images/login/reg_b.gif) no-repeat 0 0;width:217px;height:36px;border:none;text-indent:-1000em;clear:both;display:block;margin-left:75px;cursor:pointer;}
+.pass_reg_form p span.ipt .regAgree{width:523px;height:56px;border:1px solid #bbb;padding:5px;color:#7a7a7a;}
+.pass_reg_form ul.pass_reg_emailautocomplateul{position:absolute;left:75px;width:184px;display:block;top:49px;border:1px solid #ccc;background:#fff;}
+.pass_reg_form ul.pass_reg_emailautocomplateul li{padding:3px 5px;cursor:pointer; word-wrap:break-word;word-break:break-all;}
+.pass_reg_form ul.pass_reg_emailautocomplateul li.active{background:#e2eaff;}
+.pass_reg_form ul.pass_reg_suggestusernameul{width:100%;display:inline-block;margin-top:-10px;padding-bottom:10px;}
+.pass_reg_form ul.pass_reg_suggestusernameul li{float:left;padding:3px 0;padding-left:73px;width:90%;height:24px;text-align:left;overflow:hidden;display:inline-block;}
+.pass_reg_form ul.pass_reg_suggestusernameul li span{text-align:left;padding:0;color:#403f3f;height:auto;line-height:18px;width:300px;font-size:14px;}
+.pass_reg_form ul.pass_reg_suggestusernameul li input.pass_reg_suggestuserradio{float:left;}
+
+/*api*/
+span.pass_login_err,p#pass_login_p_generalerror_0,p#pass_login_p_generalerror_1{display:none;}
+#pass_login_verifycode_0,#pass_login_verifycode_1{border:1px solid #bbb;width:55px;_width:45px;height:28px;font:12px/26px Arial,"宋体";}
+.pass_login_verifycode{width:100px;height:40px;margin-left:5px;}
+#pass_login_p_verifycode_0,#pass_login_p_img_verifycode_0,#pass_login_p_verifycode_1,#pass_login_p_img_verifycode_1{float:left;}
+#pass_login_p_img_verifycode_0,#pass_login_p_img_verifycode_1{width:105px;}
+.pass_login_change_verifycode{float:right;text-decoration:underline;cursor:pointer;color:#1979DE;}
+.pass_login_p_rem,.pass_login_p_des,{margin-left:43px;}
+
+.pass_reg_err_password{
+	zoom:1;
+	clear: both;
+}
+.lable{
+	font: 14px/30px "宋体";
+	color: black;
+}
+.p{
+	padding-bottom: 3px;
+    padding-top: 3px;
+}
+.mb{
+	margin-bottom: 0px;
+}
+.inputwinth{
+	width: 140px;
+}
+.VerificationCode{
+	width: 50px;
+	height: 28px;
+}
+
+.btn {
+	background: url("../images/login/bt_g.png") repeat-x scroll 0 0 ;
+	border: 1px solid #999999;
+	box-shadow: 0 1px 2px #444444;
+	color: #333333;
+	font-weight: bold;
+	padding: 6px 10px;
+	text-shadow: 1px 0 0 #CCCCCC;
+}
+.logina{
+	background:url(../images/login/tab_ico.png) no-repeat 0 1px;
+	padding: 2px 0 2px 20px;
+}
+.loginb{
+	background: url("../images/login/tab_ico.png") no-repeat scroll 0 -20px transparent;
+	padding: 2px 0 2px 20px;
+}
+.loginbg{
+	background: none repeat scroll 0 0 #FBFBFB;
+    border: 1px solid #CECECE;
+}
+.loginbtn{
+	font-size: 20px;
+}
+.logindisabled{
+	background: url("../images/login/btn_login_dis.png") no-repeat scroll 0 0px transparent;
+}
+.msgdisabled{
+	background: url("../images/login/btn_msg_dis.png") no-repeat scroll 0 0px transparent;
+}
+.loginoutbtn{
+	width: 60px;
+}
+.mianheader{
+	height: 55px;
+}
+.mianheaderblue{
+	background: -moz-linear-gradient(center top,#FFFFFF,#ECF2FA) repeat scroll 0 0 transparent;
+	width: 950px;
+	height: 22px;
+}
+.logininfo{
+	font: 14px/28px 宋体;
+	font-weight:bold;
+}
+.setdivwidth{
+	width: 85px;
+	float: left;
+	margin: 10px;
+}
+.userinfodiv{
+	border: 1px solid #CECECE;
+	background: -moz-linear-gradient(center top , #FFFFFF, #ECF2FA) repeat scroll 0 0 transparent;
+}
+.userdiv{
+	padding-top: 25px;
+	padding-bottom: 15px;
+}
+.divbg{
+	background: -moz-linear-gradient(center top , #FFFFFF, #ECF2FA) repeat scroll 0 0 transparent;
+}
+.dispaly{
+	display: none;
+}
+.input {
+    border: 1px solid #C0C0C0;
+    color: #555555;
+    font-size: 14px;
+    margin: 0;
+    padding: 5px;
+    width: 135px;
+    
+}
+.logininput{
+	background:url(../images/login/btn_login.png) no-repeat 0 0;
+}
+.msginput{
+	background:url(../images/login/btn_msg.png) no-repeat 0 0;
+}
+.inputhover{
+	background-color:#FFF5D3;
+	_background-image:none;
+}
+
+.wjmm{
+margin-top: 9px;
+float:right;
+padding-right: 8px;
+}
+.loading{
+	float:right;
+	padding-left: 2px;
+	margin-top: 9px;
+}
+
+.alert {
+    background-color: #FCF8E3;
+    border: 1px solid #FBEED5;
+    border-radius: 4px 4px 4px 4px;
+    color: #C09853;
+    margin-bottom: 18px;
+    padding: 8px 8px 8px 14px;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+.alert-danger, .alert-error {
+    background-color: #F2DEDE;
+    border-color: #EED3D7;
+    color: #B94A48;
+}
+.alert-success{
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+  color: #468847;
+}
+.input_submit {
+		    background: none repeat scroll 0 0 #4A96E2;
+		    border: 1px solid #468ED6;
+		    border-radius: 3px 3px 3px 3px;
+		    color: #FFFFFF;
+		    cursor: pointer;
+		    display: block;
+		    height: 35px;
+		    line-height: 35px;
+		    width: 94px;
+}

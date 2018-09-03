@@ -1,0 +1,276 @@
+/**
+ * 说明：此CSS文件负责管理系统的图标
+ *
+ */
+ 
+.icon-up {
+    background: url('icons/ejx/up.png') no-repeat center center;
+}
+.icon-down {
+    background: url('icons/ejx/down.png') no-repeat center center;
+}
+
+
+/* ********************** 菜单图标设置********************* */
+
+/* 主页 */
+.icon-home {
+    background: url('icons/ejx/home.png') no-repeat center center;
+}
+
+/* 公告通知 */
+.icon-note {
+    background: url('icons/ejx/note.png') no-repeat center center;
+}
+
+/* 密码管理 */
+.icon-key {
+    background: url('icons/ejx/key.png') no-repeat center center;
+}
+
+/* 控制面板 */
+.icon-wrench {
+    background: url('icons/ejx/wrench.png') no-repeat center center;
+}
+
+/* 用户管理 */
+.icon-user-gear {
+    background: url('icons/ejx/user/group_gear.png') no-repeat center center;
+}
+
+/* 机构管理 */
+.icon-org-gear {
+    background: url('icons/ejx/org/org.png') no-repeat center center;
+}
+
+/* 角色管理 */
+.icon-role-gear {
+    background: url('icons/ejx/user/group_key.png') no-repeat center center;
+}
+
+/* 注销 */
+.icon-logout {
+    background: url('icons/ejx/logout.png') no-repeat center center;
+}
+
+/* ********************** 页面图标设置********************* */
+/* 添加用户 */
+.icon-user-add {
+    background: url('icons/ejx/user/user_add.png') no-repeat center center;
+}
+
+/* 移除用户 */
+.icon-user-delete {
+    background: url('icons/ejx/user/user_delete.png') no-repeat center center;
+}
+
+/* 修改用户 */
+.icon-user-edit {
+    background: url('icons/ejx/user/user_edit.png') no-repeat center center;
+}
+
+/* 机构选择 */
+.icon-org-link {
+    background: url('icons/ejx/org/org_link.png') no-repeat center center;
+}
+
+/* 添加机构 */
+.icon-org-add {
+    background: url('icons/ejx/org/org_add.png') no-repeat center center;
+}
+
+/* 移除机构 */
+.icon-org-delete {
+    background: url('icons/ejx/org/org_delete.png') no-repeat center center;
+}
+
+/* 修改机构*/
+.icon-org-edit {
+    background: url('icons/ejx/org/org_edit.png') no-repeat center center;
+}
+
+/* 新增角色 */
+.icon-role-add{
+	background:url('icons/ejx/user/group_add.png') no-repeat center center;
+}
+/* 修改角色*/
+.icon-role-edit{
+	background:url('icons/ejx/user/group_edit.png') no-repeat center center;
+}
+/* 删除角色*/
+.icon-role-delete{
+	background:url('icons/ejx/user/group_delete.png') no-repeat center center;
+}
+
+/* 检测输入 */
+.icon-check {
+    background: url('icons/ejx/textfield_key.png') no-repeat center center;
+}
+
+/* 页面资源 */
+.icon-resource-page {
+    background: url('icons/ejx/page/page_file.png') no-repeat center center;
+}
+
+
+
+/* 服务资源 */
+.icon-resource-service {
+    background: url('icons/ejx/link/link.png') no-repeat center center;
+}
+
+/* ********************** 自定义按钮图标********************* */
+.icon-button-xmlMsg {
+    background: url('icons/ejx/button/XmlMsg.png') no-repeat center center;
+}
+.icon-button-XmlElement {
+    background: url('icons/ejx/button/XmlElement.png') no-repeat center center;
+}
+.icon-button-Json {
+    background: url('icons/ejx/button/JSON.png') no-repeat center center;
+}
+.icon-button-Cycle {
+    background: url('icons/ejx/button/Cycle.png') no-repeat center center;
+}
+.icon-button-IsoField {
+    background: url('icons/ejx/button/IsoField.png') no-repeat center center;
+}
+.icon-button-Sequence {
+    background: url('icons/ejx/button/Sequence.png') no-repeat center center;
+}
+
+
+
+
+/* ********************** EasyUI自带图标********************* */
+.icon-blank {
+    background: url('icons/blank.gif') no-repeat center center;
+}
+
+.icon-add {
+    background: url('icons/edit_add.png') no-repeat center center;
+}
+
+.icon-edit {
+    background: url('icons/pencil.png') no-repeat center center;
+}
+
+.icon-remove {
+    background: url('icons/edit_remove.png') no-repeat center center;
+}
+
+.icon-save {
+    background: url('icons/filesave.png') no-repeat center center;
+}
+
+.icon-cut {
+    background: url('icons/cut.png') no-repeat center center;
+}
+
+.icon-ok {
+    background: url('icons/ok.png') no-repeat center center;
+}
+
+.icon-no {
+    background: url('icons/no.png') no-repeat center center;
+}
+
+.icon-cancel {
+    background: url('icons/cancel.png') no-repeat center center;
+}
+
+.icon-reload {
+    background: url('icons/reload.png') no-repeat center center;
+}
+
+.icon-search {
+    background: url('icons/search.png') no-repeat center center;
+}
+
+.icon-print {
+    background: url('icons/print.png') no-repeat center center;
+}
+
+.icon-help {
+    background: url('icons/help.png') no-repeat center center;
+}
+
+.icon-undo {
+    background: url('icons/undo.png') no-repeat center center;
+}
+
+.icon-redo {
+    background: url('icons/redo.png') no-repeat center center;
+}
+
+.icon-back {
+    background: url('icons/back.png') no-repeat center center;
+}
+
+.icon-sum {
+    background: url('icons/sum.png') no-repeat center center;
+}
+
+.icon-tip {
+    background: url('icons/tip.png') no-repeat center center;
+}
+
+.icon-filter {
+    background: url('icons/filter.png') no-repeat center center;
+}
+
+.icon-mini-add {
+    background: url('icons/mini_add.png') no-repeat center center;
+}
+
+.icon-mini-edit {
+    background: url('icons/mini_edit.png') no-repeat center center;
+}
+
+.icon-mini-refresh {
+    background: url('icons/mini_refresh.png') no-repeat center center;
+}
+
+.icon-large-picture {
+    background: url('icons/large_picture.png') no-repeat center center;
+}
+
+.icon-large-clipart {
+    background: url('icons/large_clipart.png') no-repeat center center;
+}
+
+.icon-large-shapes {
+    background: url('icons/large_shapes.png') no-repeat center center;
+}
+
+.icon-large-smartart {
+    background: url('icons/large_smartart.png') no-repeat center center;
+}
+
+.icon-large-chart {
+    background: url('icons/large_chart.png') no-repeat center center;
+}
+
+
+/* EJX扩展菜单图标 */
+.icon-service-req {
+    background: url('icons/ejx/ext/req.png') no-repeat center center;
+}
+.icon-service-res {
+    background: url('icons/ejx/ext/res.png') no-repeat center center;
+}
+.icon-service-error {
+    background: url('icons/ejx/ext/error.png') no-repeat center center;
+}
+.icon-service-test {
+    background: url('icons/ejx/ext/test.png') no-repeat center center;
+}
+.icon-property {
+    background: url('icons/ejx/ext/property.png') no-repeat center center;
+}
+.icon-component {
+    background: url('icons/ejx/ext/component.png') no-repeat center center;
+}
+.icon-service {
+    background: url('icons/ejx/ext/service.png') no-repeat center center;
+}

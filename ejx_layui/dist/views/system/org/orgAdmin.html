@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>机构管理</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="../../../../layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="../../../../layuiadmin/style/admin.css" media="all">
+  <style>
+  /*  *{
+  	box-sizing:border-box;
+  }  */
+  </style>
+</head>
+<body style="overflow-y: scroll;">
+	<div class="layui-fluid ">
+		<div class="layui-card">
+			<div class="layui-card-body">
+				<form class="layui-form " >
+					<div class="layui-form-item layui-row">
+						<div class=" layui-col-xs3" style="margin-left: -34px;">
+							<div class="layui-inline">
+								<label class="layui-form-label">机构代码:</label>
+								<div class="layui-input-block">
+									<input name="orgNo" class="layui-input">
+								</div>
+							</div>
+						</div>
+						<div class=" layui-col-xs3">
+							<div class="layui-inline">
+								<label class="layui-form-label">机构名称:</label>
+								<div class="layui-input-block">
+									<input name="orgName" class="layui-input">
+								</div>
+							</div>
+						</div>
+						<div class=" layui-col-xs3">
+							<div class="layui-inline">
+								<label class="layui-form-label">机构状态:</label>
+								<div class="layui-input-block">
+									<select name="orgState">
+										<option value=""></option>
+										<option value="1">启用</option>
+										<option value="0">停用</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class=" layui-col-xs3">
+							<div class="layui-inline">
+							<button type="button" class="layui-btn" lay-submit lay-filter="searchInfo">
+								查询</button>
+							<button type="reset" class="layui-btn layui-btn-primary" >重置查询</button>
+							</div>
+						</div>
+					</div>
+	
+				</form>
+				<div class=" operate-btn layui-bottom-space">
+					<button class="layui-btn " data-type="addNew">
+						新增机构</button>
+					<button class="layui-btn" data-type="showDetail">修改</button>
+					<button class="layui-btn" data-type="deleteRows">停用</button>
+				</div>
+				<table id="orgList" lay-filter = "orgList"></table>
+				<script type="text/html" id="test-table-bar">
+             	 	<button class="layui-btn layui-btn-md"   lay-event="detail">查看</button>
+ 				 	 <button class="layui-btn layui-btn-md layui-bg-red"  lay-event="del">删除</button> 
+           		 </script>
+			</div>
+			
+			
+		</div>
+	</div>
+
+<script type="text/javascript" src="../../../layuiadmin/layui/layui.js"></script>
+<script type="text/javascript" src="../../../layuiadmin/modules/orgAdmin.js"></script>
+</html>

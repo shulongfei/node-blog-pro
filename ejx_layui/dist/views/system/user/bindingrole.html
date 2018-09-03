@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>用户管理</title>
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="stylesheet" href="/layuiadmin/layui/css/layui.css" media="all" />
+	<link rel="stylesheet" href="/layuiadmin/layui/css/public.css" media="all" />
+</head>
+<body class="childrenBody">
+<form class="layui-form">
+	<blockquote class="layui-elem-quote quoteBox">
+			<div class="layui-inline">
+			<label class="layui-form-label">用户编号：</label>
+              <div class="layui-input-inline">
+                <input type="text" name="userId" readonly="readonly" id="userId" lay-verify="userId" autocomplete="off" class="layui-input">
+              </div>
+            </div>
+            <div class="layui-inline">
+              <label class="layui-form-label">用户名称：</label>
+              <div class="layui-input-inline">
+                <input type="text" name="loginName" readonly="readonly" id="loginName" lay-verify="loginName" autocomplete="off" class="layui-input">
+              </div>
+			</div>
+			<div class="layui-inline">
+						
+                 <button type="button" class="layui-btn  binding" >绑定角色</button>
+                 
+             	
+					</div>
+		
+	</blockquote>
+	<table id="roleList" lay-filter="roleList"></table>
+
+	<!--操作-->
+	<script type="text/html" id="roleListBar">
+		<a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
+		
+		<a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">删除</a>
+	</script>
+</form>
+<script type="text/javascript" src="/layuiadmin/layui/layui.js"></script>
+<script type="text/javascript" src="bindingrole.js"></script>
+</body>
+</html>

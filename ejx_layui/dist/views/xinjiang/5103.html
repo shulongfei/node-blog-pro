@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>银行卡活期现金取款</title>
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all" />
+	<link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all" />
+	<style>
+	.layui-btn{
+		width:auto;
+		margin: 8px;
+	}
+	#proxyInfo .layui-input-block{
+		margin-right:50px;
+	} 
+	.layui-form-radio{
+		margin-right:2px;
+	}
+	</style>
+</head>
+<body class="layui-fluid">
+	<div class="layui-card" >
+		<div class="layui-card-body">
+			<div class="layui-elem-quote layui-bg-white" >银行卡活期现金取款</div>
+			<!-- <hr class="layui-bg-green"> -->
+		    <form class="layui-form layui-form-label-lg" lay-filter="mainForm">
+		    	<div class="layui-form-item layui-row">
+		    		<div class="layui-col-md5 layui-col-xs5">
+		    			<div class="layui-col-md9 layui-col-xs9">
+			    			<label class="layui-form-label neccesary">是否代理:</label>
+							<div class="layui-input-block">
+								<select id="isproxy " name="isproxy" lay-verify="required" lay-filter="isproxy">
+				                    <option value="0">否</option>
+				                    <option value="1">是</option>
+				                </select>
+			                </div>
+		                 </div>
+		                 <span id="proxyDetail" class="layui-col-md3 layui-col-xs3 layui-btn layui-btn-xs layui-bg-gray " disabled="true">代理信息</span>
+		    		</div>
+		    		<!-- 代理信息 弹框 -->
+		    		<div id= "proxyInfo" style="display: none;" class="layui-form layui-fluid" >
+					<div class="layui-form-item">
+			   			<label class="layui-form-label neccesary">代理人证件类型:</label>
+						<div class="layui-input-block">
+							<select id="dlrzjlx" name="dlrzjlx" lay-filter="dlrzjlx">
+								<option value=""></option>
+			                </select>
+		                </div>
+					</div>
+					<div class="layui-form-item">
+			   			<label class="layui-form-label neccesary">代理人证件号码:</label>
+						<div class="layui-input-block">
+							<input type="number" id="dlrzjhm" name="dlrzjhm" class="layui-input"  >
+							<input type="number" id="sfhc" name="sfhc" class="layui-input layui-hide" >
+						</div>
+					</div>
+					<div class="layui-form-item">
+			   			<label class="layui-form-label neccesary">代理人名称:</label>
+						<div class="layui-input-block">
+							<input id="dlrmc" name="dlrmc" class="layui-input" >
+						</div>
+					</div>
+					<div class="layui-form-item">
+			   			<label class="layui-form-label  neccesary">代理人联系电话:</label>
+						<div class="layui-input-block">
+							<input type="number" id="dlrdhhm" name="dlrdhhm" class="layui-input" lay-verify="">
+						</div>
+					</div>
+				</div>
+		     
+		    		<div class="layui-col-md5 layui-col-xs5 layui-col-md-offset1">
+			    		<div class="layui-col-md9 layui-col-xs9">
+			    			<label class="layui-form-label neccesary">读卡方式:</label>
+							<div id="dkfs" class="layui-input-block" >
+								<input type="radio"  name="dkfs" value="0" title="IC卡" checked>
+								<input type="radio"  name="dkfs" value="1" title="磁条卡" >
+							</div>
+			    		</div>
+		    		</div>
+		    	</div>
+		    	<div class="layui-form-item layui-row">
+		    		<div class="layui-col-md5 layui-col-xs5 ">
+			    		<div class="layui-col-md9 layui-col-xs9">
+			    			<label class="layui-form-label neccesary">银行卡号:</label>
+								<div class="layui-input-block">
+									<input type="number" id="yhkh" name="yhkh" class="layui-input layui-input-disabled" lay-verify="required|number" readonly="true">
+								</div>
+			    		</div>
+			    		<span id="slotCard" class="layui-col-md3 layui-col-xs3 layui-btn layui-btn-xs">划卡</span>
+		    		</div>
+		    		
+		    		<div class="layui-col-md5 layui-col-xs5 layui-col-md-offset1">
+			    		<div class="layui-col-md9 layui-col-xs9">
+			    			<label class="layui-form-label label-lg">前一日账户余额:</label>
+								<div class="layui-input-block">
+								<input id="qyrzhye" name="qyrzhye" class="layui-input"  readonly="readonly">
+									<!--  <input id="qyrzhye " name="qyrzhye " class="layui-input"  />-->
+								</div>
+			    		</div>
+		    		</div>
+		    	</div>
+		    	<div class="layui-form-item layui-row">
+		    	<div class="layui-col-md5 layui-col-xs5 " >
+		    		<div class="layui-col-md9 layui-col-xs9">
+		    			<label class="layui-form-label">客户名称:</label>
+							<div class="layui-input-block">
+								<input id="khmc" name="khmc" class="layui-input" readonly>
+							</div>
+		    		</div>
+	    		</div>
+	    		<div class="layui-col-md5 layui-col-xs5 layui-col-md-offset1">
+	    			<div class="layui-col-md9 layui-col-xs9">
+		    			<label class="layui-form-label">证件类型:</label>
+		    			<div class="layui-input-block">
+							<select id="zjlx" name="zjlx" lay-filter="zjlx">
+								<option value=""></option>
+			                </select>
+		                </div>
+	                </div>
+	                <span id="readID" class="layui-col-md3 layui-col-xs3 layui-btn layui-btn-xs">读身份证</span>
+	    		</div>
+		    		
+		    	</div>
+		    	<div class="layui-form-item layui-row">
+		    		<div class="layui-col-md5 layui-col-xs5 ">
+		    			<div class="layui-col-md9 layui-col-xs9">
+			    			<label class="layui-form-label">证件号码:</label>
+			    			<div class="layui-input-block">
+			    				<input type="text" id="zjhm" name="zjhm" class="layui-input" lay-verify="required" ext-verify ="identity">
+			    			</div>
+		    			</div>
+		    			<span id="checkID" class="layui-col-md3 layui-col-xs3 layui-btn layui-btn-xs">身份核查</span>
+		    		</div>
+		    		
+		    		<div class="layui-col-md5 layui-col-xs5 layui-col-md-offset1">
+		    			<div class="layui-col-md9 layui-col-xs9">
+		    				<label class="layui-form-label neccesary">币种:</label>
+							<div class="layui-input-block">
+								<select id="bz" name="bz" lay-verify="required" lay-filter="cal">
+								</select>
+							</div>
+						</div>
+		    		</div>
+		    	</div>
+		    	<div class="layui-form-item layui-row">
+		    		<div class="layui-col-md5 layui-col-xs5 ">
+		    			<div class="layui-col-md9 layui-col-xs9">
+			    			<label class="layui-form-label neccesary">炒汇鉴别:</label>
+			    			<div class="layui-input-block">
+			    				<select id="hcjb" name="hcjb" lay-verify="required">  
+			    				</select>
+			    			</div>
+		    			</div>
+		    		</div>
+		    		<div class="layui-col-md5 layui-col-xs5 layui-col-md-offset1">
+			    		<div class="layui-col-md9 layui-col-xs9">
+			    			<label class="layui-form-label">账户余额:</label>
+			    			<div class="layui-input-block">
+								<input id="zhye" name="zhye" class="layui-input" lay-verify="" readonly="readonly">
+							</div>
+						</div>
+		    		</div>
+		    	</div>
+		    	<div class="layui-form-item layui-row">
+		    		<div class="layui-col-md5 layui-col-xs5 ">
+			    		<div class="layui-col-md9 layui-col-xs9">
+			    			<label class="layui-form-label">可用余额:</label>
+							<div class="layui-input-block">
+								<input id="kyye" name="kyye" class="layui-input" readonly="readonly">
+							</div>
+						</div>
+		    		</div>
+		    		<div class="layui-col-md5 layui-col-xs5 layui-col-md-offset1">
+		    		<div class="layui-col-md9 layui-col-xs9">
+		    			<label class="layui-form-label neccesary">支取余额:</label>
+						<div class="layui-input-block">
+							<input id="zqje" name="zqje" class="layui-input" lay-verify="required" >
+						</div>
+					</div>
+		    		</div>
+		    	</div>
+		    	<div class="layui-form-item layui-row">
+		    		<div class="layui-col-md5 layui-col-xs5">
+			    		<div class="layui-col-md9 layui-col-xs9">
+			    			<label class="layui-form-label">摘要代码:</label>
+							<div class="layui-input-block">
+								<select id="zydm" name="zydm" >
+									<option value=""></option>
+									<option value="0">代码1</option>
+	                    			<option value="1">代码2</option>
+								</select>
+							</div>
+						</div>
+		    		</div>
+		    		<div class="layui-col-md5 layui-col-xs5 layui-col-md-offset1">
+			    		<div class="layui-col-md9 layui-col-xs9">
+			    			<label class="layui-form-label">自述摘要:</label>
+							<div class="layui-input-block">
+								<input id="zszy" name="zszy" class="layui-input">
+							</div>
+						</div>
+		    		</div>
+		    	</div>
+		    	<div class="layui-form-item layui-row">
+		    		<div class="layui-col-md5 layui-col-xs5 ">
+		    			<div class="layui-col-md9 layui-col-xs9">
+			    			<label class="layui-form-label label-lg neccesary">通兑手续费收取方式:</label>
+							<div class="layui-input-block">
+								<select id="tdsxfsqfs" name="tdsxfsqfs" lay-verify="required">
+								</select>
+							</div>
+						</div>
+		    		</div>
+		    		<div class="layui-col-md5 layui-col-xs5 layui-col-md-offset1">
+			    		<div class="layui-col-md9 layui-col-xs9">
+			    			<label class="layui-form-label label-lg neccesary">通兑手续费金额:</label>
+							<div class="layui-input-block">
+								<input id="tdsxfje" name="tdsxfje" class="layui-input" lay-verify="required" readonly>
+							</div>
+			    		</div>
+		    		</div>
+		    	</div>
+				<div class="layui-site-center" style="width:260px;">
+					<button type="button" class="layui-btn layui-btn-sm" lay-submit lay-filter="sub">提交</button> 
+					<button id="add" type="button" class="layui-btn layui-btn-sm layui-btn-primary">加入交易车</button>
+					<button type="reset" class="layui-btn layui-btn-sm layui-btn-primary">重置</button>
+				</div>
+				</form>
+	   	</div>
+	</div>
+	
+	<div id= "checkInfo" style="display: none;" class="layui-fluid">
+		身份核查信息
+	<hr class="layui-bg-green">
+	</div>
+<script type="text/javascript" src="../../layuiadmin/layui/layui.js"></script>
+<script type="text/javascript">
+	layui.config({
+		base:"../../layuiadmin"
+	}).extend({
+		comExt:"/lib/comExt"
+	}).use(['form','layer','comExt'],function(){
+			var form = layui.form,
+			layer = layui.layer,
+			$ = layui.$,
+			comExt = layui.comExt;
+			
+			//下拉选项
+			comExt.ajax({
+				type:'get',
+				url:'../../layuiadmin/json/5103.json',
+				success:function(data){
+					comExt.updateSelect(data);
+					form.render('select','mainForm');
+				}
+			})
+
+			//是否代理
+			$('#proxyDetail').on('click',function(){
+				if($(this).attr('disabled')){
+					return false;
+				}
+				layer.open({
+					type:1,
+					title:"代理信息",
+					area: ['500px', '350px'],
+					btn:['确定'],
+					content:$('#proxyInfo'),
+					success:function(index,layero){
+						$('dlrdhhm').attr('lay-verify','number');
+					},
+					yes:function(index, layero){
+						var a,
+						b = $('#dlrzjhm').val(),
+						c = $('#dlrmc').val(),
+						d = $('#dlrdhhm').val();
+						/* form.on('select(dlrzjlx)',function(data){
+							console.log(data.value);
+							a = data.value;
+						}) */
+						a= $('#dlrzjlx').val();
+						if((a && b && c && d)){
+							layer.close(index);
+						}else{
+							layer.msg("必输项不能为空！");
+						}
+					},
+					cancel:function(index, layero){
+						
+					}
+				})
+			})
+			form.on('select(isproxy)',function(data){
+				if(data.value== 1){
+					$('#proxyDetail').removeClass('layui-bg-gray');
+					$('#proxyDetail').removeAttr('disabled');
+				}else{
+					$('#proxyDetail').addClass('layui-bg-gray');
+				}
+			})
+			//划卡 
+			var yhkh = $('#yhkh');
+			yhkh.on("click",function(){
+				if(yhkh.hasClass('layui-input-disabled')){
+					layer.msg('请划卡');
+				}
+			}) 
+			$('#slotCard').on('click',function(){
+				if(true){
+			/* 		var oldVal = yhkh.val();
+					var key = "1234567891011";
+					if(oldVal !== key){
+						yhkh.val(key);
+						yhkh.removeAttr('readonly');
+						var readOnly = ['qyrzhye','khmc','zhye','kyye'];
+						layui.each(readOnly,function(i,item){
+							var id = "#"+item;
+							$(id).attr('readonly',"readonly");
+							$(id).val("111");
+						})
+						$('#yhkh').trigger('input');
+					}
+					yhkh.removeClass('layui-input-disabled'); */
+					yhkh.removeClass('layui-input-disabled');
+					$('#yhkh').removeAttr('readonly');;
+				}else{
+					layer.msg('划卡失败');
+				}
+			})
+			
+			//证件类型
+			form.on('select(zjlx)',function(data){
+				if(data.value == "1010"){
+					$('#zjhm').attr('lay-verify','identity');
+				}else{
+					$('#zjhm').attr('lay-verify','')
+				}
+			})
+			
+			//读身份证 & 身份核查
+			$('#readID').on('click',function(){
+				$('#zjhm').val('510181119300000000');
+			})
+			
+
+			$('#checkID').on('click',function(){
+				//检查数据是否为空
+				var khmc=$("#khmc").val();
+				var zjlx=$("#zjlx").val();
+				var zjhm=$("#zjhm").val();
+				$("#sfhc").val(1);
+				if(!khmc){
+					layer.msg("客户名称不能为空！");
+					return
+				}
+				else if(!zjlx){
+					layer.msg("证件类型不能为空！");
+					return
+				}
+				else if(!zjhm){
+					layer.msg("证件号码不能为空！");
+					return
+				}else if($("#zjhm").attr('lay-verify') == "identity"){
+					if(zjhm.length !== 18){
+						layer.msg("证件号码必须是18位！");
+						return
+					}
+				} 
+				var reqdata={khmc:khmc,zjlx:zjlx,zjhm:zjhm};
+				comExt.ajax({
+		            url: "/withdrowMoney/identityCheck",
+		            data:JSON.stringify(reqdata),
+		            success: function(o){
+		            	var obj=o.obj;
+		            	if (!o.success) {
+		            		return;
+						} else {
+						 	layer.open({
+							type:1,
+							title:"身份核查",
+							shadeClose:true,
+							area: ['400px', '200px'],
+							content:$('#checkInfo')
+							
+						}) 
+						var str='';
+						 	str+='<ul><li>客户名称：'+obj.khmc+'</li>';
+						 	str+='<li>证件号码：'+obj.zjhm+'</li>';
+						 	str+='<li>核验结果：成功</li>';
+						 	$("#checkInfo").html('');
+						$("#checkInfo").append(str);
+							
+							
+						}
+		            },
+		        });
+			})
+			
+			
+			//通兑手续费金额 
+			$('#yhkh').on('input',function(){
+				calMoney();
+			})
+			$('#zqje').on('input',function(){
+				calMoney();
+			})
+			form.on('select(cal)',function(data){
+				calMoney();
+			})
+			
+			//银行卡信息
+			 $("#yhkh").blur(function(){
+			       var yhkh=$("#yhkh").val();
+			       if(!yhkh || yhkh == "")
+			    	   return false;
+			       var reqdata={yhkh:yhkh};
+	            	comExt.ajax({
+	                url: "/withdrowMoney/countInfo",
+	                data: yhkh,
+	                success: function(o){
+	                	if (!o.success) {
+	                		return;
+	    				} else {
+	    				  var obj=o.obj;
+	    				  $("#khmc").val(obj.khmc);
+	    				  $("#zhye").val(obj.zhye);
+	    				  $("#kyye").val(obj.kyye);
+	    				  $("#qyrzhye").val(obj.qyrzhye);
+	    				}
+	                },
+	             });
+               
+            });
+			
+			function calMoney(){
+				var a = $('#yhkh').val(),
+				b = $('#bz').val(),
+				c = $('#zqje').val();
+				if(a && b && c){
+					$('#tdsxfje').val(0);
+				} 
+			}
+			
+			//提交表单信息
+			form.on("submit(sub)",function(data){
+				var dt=data.field;
+				var bz=dt.bz;
+				var zqje=dt.zqje;
+				var zjhm=dt.zjhm;
+				var sfjy=$("#sfhc").val();
+				if(bz==156&&zqje>=50000){
+				  if(sfjy==""){
+					  layer.msg("支取数额较大，请进行身份校验！"); 
+					  return
+				  }
+				}else if(bz==157&&zqje>=10000){
+					if(sfjy==""){
+						  layer.msg("支取数额较大，请进行身份校验！"); 
+						  return
+					  }
+				}
+				if(zjhm){
+					
+					if(sfjy==""){
+						layer.msg("请进行身份校验！"); 
+						  return
+					}
+					
+				}
+
+				var action = "/withdrowMoney/saveDetail";//新增
+			
+		 		 comExt.ajax({
+		            url: action,
+		            data: JSON.stringify(data.field),
+		            success: function(o){
+		            	if(o.success){
+		            		var index = parent.layer.getFrameIndex(window.name);
+			    	 		parent.layer.close(index);
+			            	layer.msg("取款成功！");
+			            	return ; 
+		            	}
+		            	
+	                 }
+	       		 });
+			})
+			
+			
+			
+			function updateSelect(data){
+				for(var key in data){
+					var html ="";
+					$.each(data[key],function(i,item){
+						html += "<option value='"+ item.value +"'>"+item.text+"</option>";
+					});
+					var id= "#"+key;
+					$(id).append(html);
+				}
+			}
+		})
+</script>
+</body>
+</html>

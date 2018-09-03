@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>带复选框的菜单树</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+  <style type="text/css">
+        .div-btns {
+            margin: 0 auto;
+            width:100%;
+            margin-top:20px;
+        }
+		.page-menu-context{
+			border:1px solid #ddd;
+			box-shadow:4px 5px 10px rgba(0,0,0,0.2);
+			background:rgba(255,255,255,1);
+			position:fixed;
+			top:22px;
+			left:130px;
+			z-index:1001;
+			display:none;
+		}
+		.page-menu-item{position:relative;margin:10px;}
+		.page-menu-item:hover{background:#ddd}
+		.page-menu-item:after{content:'';width:100%;border:.5px solid #ddd;position:absolute;bottom:0;left:0}
+		.page-menu-item:last-child:after{display:none;}
+		.page-menu-item i{margin-right:10px;}
+    </style>
+</head>
+<body class="layui-fluid">
+<div class="layui-card">
+	<div class="layui-card-body layui-row">
+		<form class="layui-form layui-col-md5">
+			<span>带复选框的xtree1</span>
+			<div  style="margin-bottom:180px;" id="xtree1" ></div>
+			<span>带复选框和右键菜单的xtree2</span>
+		 	<div id="xtree2" lay-filter='xtree2'></div>
+		</form> 
+		<ul class="page-menu-context" id='xtree2-menu'>
+			<li class="page-menu-item menu-refresh" lay-event='refresh'><i class="layui-icon">ဂ</i>刷新树目录(E)</li> 
+			<li class="page-menu-item menu-create" lay-event='create'><i class="layui-icon"></i>创建子节点(L)</li> 
+			<li class="page-menu-item menu-rename" lay-event='rename'><i class="layui-icon"></i>重命名(R)</li> 
+			<li class="page-menu-item menu-delete" lay-event='delete'><i class="layui-icon">ဆ</i>删除该节点(D)</li>
+		</ul>
+        <div class="layui-col-md6" style="position:fixed;top:50px;right:5%;">
+	        <h2>提供的四种方法</h2>
+	        <h3>下面事件作用于xtree1，输出为console.log();</h3>
+	        <div class="div-btns">
+	            <input type="button" id="btn1" value="xtree1.GetChecked()获取全部[选中的][末级节点]原checkbox DOM对象，返回Array" class="layui-btn layui-btn-fluid" />
+	        </div>
+	        <div class="div-btns">
+	            <input type="button" id="btn2" value="xtree1.GetAllCheckBox();获取全部原checkbox DOM对象，返回Array" class="layui-btn layui-btn-fluid" />
+	        </div>
+	        <div class="div-btns">
+	            <div class="layui-form-item">
+	                <label class="layui-form-label">输入value值</label>
+	                <div class="layui-input-block">
+	                    <input type="text" id="txt1" placeholder="如：jd1.1" autocomplete="off" class="layui-input">
+	                </div>
+	            </div>
+	            <input type="button" id="btn3" value="xtree1.GetParent(value)通过value值找父级DOM对象，顶级节点与错误值均返回null" class="layui-btn layui-btn-fluid" />
+	        </div> 
+	        <div class="div-btns">
+	            <input type="button" id="btn4" value="xtree1.GetAllChecked()获取全部原checked DOM对象，返回Array" class="layui-btn layui-btn-fluid" />
+	        </div>
+	        <div>result: 各结点的id </div>
+	        <div id="result" style="height:100px;border:1px solid #ddd"></div>
+        </div>
+	</div>
+</div>
+ 
+   
+ <script src="../../layuiadmin/layui/layui.js?t=1"></script>
+ <script type="text/javascript">
+ 	layui.config({
+	    base: '../../layuiadmin/' //静态资源所在路径
+	  }).extend({
+		  layuiXtree:'lib/layuiXtree'
+	  }).use(['layuiXtree','form'],function(){
+		  var layuiXtree = layui.layuiXtree,
+		  form = layui.form,
+		  $ = layui.$,
+		  result = $('#result');
+		  var json = [
+		              {
+		                  text: "节点1", id: "jd1",spread:1, children: [
+		                    { text: "节点1.1", checked: true, disabled: true, id: "jd1.1", children: [] }
+		                  , { text: "节点1.2", id: "jd1.2", checked: true, children: [] }
+		                  , { text: "节点1.3", id: "jd1.3", disabled: true, children: [] }
+		                  , { text: "节点1.4", id: "jd1.4", children: [
+		                                  { text: "节点1.4.1", id: "jd1.4.1",  children: [] }
+		                                  ] }
+		                  ]
+		              }
+		              , {
+		                  text: "节点2", id: "jd2", children: [
+		                    { text: "节点2.1", id: "jd2.1", children: [] }
+		                  , { text: "节点2.2", id: "jd2.2", children: [] }
+		                  , { text: "节点2.3", id: "jd2.3", children: [] }
+		                  , { text: "节点2.4", id: "jd2.4", children: [] }
+		                  ]
+		              }
+		              , { text: "节点3", id: "jd3", children: [] }
+		              , { text: "节点4", id: "jd4", children: [] }
+		      ];
+		 	var xtree1 = layuiXtree({
+	            elem: 'xtree1'   //(必填) 放置xtree的容器，样式参照 .xtree_contianer
+	            , form: form     //(必填) layui 的 from
+	            , data: json 
+	            ,isopen:true//(必填) json数据
+	        });
+	          //3、最完整的参数用法- 异步加载
+	        var xtree2 = layuiXtree({
+	            elem: 'xtree2'                  //必填三兄弟之老大
+	            , form: form                    //必填三兄弟之这才是真老大
+	            //, data: '../../layuiadmin/json/checkboxTree.json' //必填三兄弟之这也算是老大
+	           	, url: '../../layuiadmin/json/checkboxTree.json' //必填三兄弟之这也算是老大
+	           	, type:'get'
+	            , isopen: false  //加载完毕后的展开状态，默认值：true
+	            , ckall: true    //启用全选功能，默认值：false
+	            , ckallback: function () { } //全选框状态改变后执行的回调函数
+	            , icon: {        //三种图标样式，更改几个都可以，用的是layui的图标
+	                open: "&#xe7a0;"       //节点打开的图标
+	                , close: "&#xe622;"    //节点关闭的图标
+	                , end: "&#xe621;"      //末尾节点的图标
+	            }
+	            , color: {       //三种图标颜色，独立配色，更改几个都可以
+	                open: "#EE9A00"        //节点图标打开的颜色
+	                , close: "#EEC591"     //节点图标关闭的颜色
+	                , end: "#828282"       //末级节点图标的颜色
+	            }
+	            , click: function (data) {  //节点选中状态改变事件监听，全选框有自己的监听事件
+	                console.log(data.elem); //得到checkbox原始DOM对象
+	                console.log(data.elem.checked); //开关是否开启，true或者false
+	                console.log(data.value); //开关value值，也可以通过data.elem.value得到
+	                console.log(data.othis); //得到美化后的DOM对象
+	            }
+	        });
+		 	//文件树的右键菜单
+		 	 xtree2.on('menu(xtree2)',{
+		 		renameNode:function(data,index){
+			 		console.log(data);
+			 		console.log(index);
+			 	},
+			 	addNode:function(data,index){
+			 		console.log(data);
+			 		console.log(index);
+			 	},
+			 	deleteNode:function(data,index){
+			 		console.log(data);
+			 		console.log(index);
+			 	},
+			 	refreshNode:function(data){
+			 		console.log(data);
+			 	}
+		 	}) 
+	        //提供的方法们
+
+	        //获取全部[选中的][末级节点]原checkbox DOM对象，返回Array
+	        $('#btn1')[0].onclick = function () {
+
+	            var oCks = xtree1.GetChecked(); //这是方法
+				var html = "";
+	            for (var i = 0; i < oCks.length; i++) {
+	            	console.log(oCks[i]);
+	            	html += oCks[i].value + " / ";
+	            	result.html(html);
+	                
+	            }
+	        }
+
+	        //获取全部原checkbox DOM对象，返回Array
+	       $('#btn2')[0].onclick = function () {
+	            var oCks = xtree1.GetAllCheckBox(); //这是方法
+	            var html = "";
+	            for (var i = 0; i < oCks.length; i++) {
+	            	console.log(oCks[i]);
+	            	html += oCks[i].value + " / ";
+	            	result.html(html);
+	                
+	            }
+	        }
+
+	        //通过value值找父级DOM对象，顶级节点与错误值均返回null
+	       
+	        $('#btn3')[0].onclick = function () {
+	            var oCks = xtree1.GetParent($('#txt1').value);  //这是方法
+
+	            if (oCks != null) { //如果返回的对象不为null，则获取到父节点了，如果为null，说明这个值对应的节点是一级节点或是值错误
+	            	console.log(oCks.value);
+	            	result.html(oCks.value);
+	            	
+	            }
+	            else {
+	            	result.html('无父级节点或value值错误');
+	                console.log('无父级节点或value值错误');
+	            }
+	        }
+	        
+	      //获取所有选中的checked dom对象,返回Array
+		  $('#btn4').on('click',function(){
+			  var oCks = xtree1.GetAllChecked();
+			  var html = "";
+			  $.each(oCks,function(i,item){
+				  html+= $(item).val() + " / ";
+				  console.log($(item).val());
+				  console.log($(item).attr('title'));
+			  })
+			  result.html("选中结点的value有:"+html	)
+		  })
+		  
+		  
+		  
+	  })
+ </script>
+</body>
+</html>

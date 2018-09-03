@@ -1,0 +1,22 @@
+[
+          {
+              "text": "节点1", "id": "jd1","spread":"1", "children": [
+                { "text": "节点1.1", "checked": true, "disabled": true, "id": "jd1.1", "children": [] }
+              , { "text": "节点1.2", "id": "jd1.2", "checked": true, "children": [] }
+              , { "text": "节点1.3", "id": "jd1.3", "disabled": true, "children": [] }
+              , { "text": "节点1.4", "id": "jd1.4", "children": [
+                              { "text": "节点1.4.1", "id": "jd1.4.1",  "children": [] }
+                              ] }
+              ]
+          }
+          , {
+              "text": "节点2", "id": "jd2", "children": [
+                { "text": "节点2.1", "id": "jd2.1", "children": [] }
+              , { "text": "节点2.2", "id": "jd2.2", "children": [] }
+              , { "text": "节点2.3", "id": "jd2.3", "children": [] }
+              , { "text": "节点2.4", "id": "jd2.4", "children": [] }
+              ]
+          }
+          , { "text": "节点3", "id": "jd3", "children": [] }
+          , { "text": "节点4", "id": "jd4", "children": [] }
+  ]

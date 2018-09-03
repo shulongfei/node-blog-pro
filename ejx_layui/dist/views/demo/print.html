@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>print</title>
+<link rel="stylesheet" href="/layuiadmin/layui/css/layui.css" media="all">
+<link rel="stylesheet" href="/layuiadmin/style/admin.css" media="all">
+
+</head>
+<body>
+<iframe id="printIframe" name="printIframe" class="layui-hide"></iframe>
+<button id="printBtn" class="layui-btn">打印pdf</button>
+
+<script src="/layuiadmin/layui/layui.js?t=1"></script>
+<script type="text/javascript">
+ layui.config({
+	 base: '/layuiadmin/' //静态资源所在路径
+ }).extend({
+   print: 'lib/print' 
+ }).use(['print'],function(){
+	 var $ = layui.$,
+	 print = layui.print;
+	 
+	 var url= "/layuiadmin/json/111.pdf";
+	 $('#printBtn').click(function(){
+		 $('#printIframe').attr('src',url);
+	 }) 
+	
+ })
+ 
+</script>
+</body>
+</html>

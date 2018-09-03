@@ -1,0 +1,192 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>表单组合</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all">
+  <style type="text/css">
+    .require-mark {
+      color: red;
+    }
+    /*带右侧图标的input*/
+    .layui-input-icon-right,
+    .layui-input-icon-right:before{
+      position:absolute;
+      top:0px;
+      right:2px;
+      line-height:36px;
+      font-size:28px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="layui-fluid form-container">
+    <div class="layui-card">
+      <div class="layui-card-header">添加用户信息</div>
+      <div class="layui-card-body" style="padding: 15px;">
+
+        <form class="layui-form">
+
+          <div class="layui-form-item layui-row">
+            <div class="layui-col-md6">
+              <label class="layui-form-label">
+                <span class="require-mark">*</span>主键编号:
+              </label>
+              <div class="layui-input-block">
+                <input type="text" name="id" lay-verify="required" placeholder="主键编号" autocomplete="off" class="layui-input">
+                <!-- <a class="layui-icon layui-icon-vercode layui-input-icon-right" style="color:#009688" id="userID" type="button" ></a> -->
+              </div>
+            </div>
+          </div>
+
+          <div class="layui-form-item layui-row">
+            <div class="layui-col-md6">
+              <label class="layui-form-label">
+                <span class="require-mark">*</span>一级分类:
+              </label>
+              <div class="layui-input-block">
+                <input type='text' name="code" lay-verify="required" placeholder="父主键编号" autocomplete="off" class="layui-input">
+               <!--  <a class="layui-icon layui-icon-vercode layui-input-icon-right" style="color:#009688" id="userName" type="button" ></a> -->
+              </div>
+            </div>
+          </div>
+
+          <div class="layui-form-item layui-row">
+            <div class="layui-col-md6">
+              <label class="layui-form-label">
+                <span class="require-mark">*</span>键:
+              </label>
+              <div class="layui-input-block">
+                <input type="text" name="name" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+              </div>
+            </div>  
+          </div>
+          
+          <div class="layui-form-item layui-row">
+            <div class="layui-col-md6">
+              <label class="layui-form-label">
+                <span class="require-mark">*</span>值</label>
+              <div class="layui-input-block">
+                <input type="text" name="value" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+              </div>
+            </div>  
+          </div>
+          
+          <div class="layui-form-item layui-row">
+            <div class="layui-col-md6">
+              <label class="layui-form-label">
+                <span class="require-mark">*</span>备注:
+              </label>
+              <div class="layui-input-block">
+                <textarea name="ramark" placeholder="请输入内容" class="layui-textarea"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <div class="layui-form-item layui-row">
+            <div class="layui-col-md6" style="text-align: center;">
+              <button type="button" class="layui-btn" lay-submit="" lay-filter="addUser">立即提交</button>
+              <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+  <script src="../../../layuiadmin/layui/layui.js"></script>  
+  <script>
+
+  layui.config({
+    base:"../../../layuiadmin"
+  }).extend({
+    comExt:"/lib/comExt"
+  }).use(['form', 'laydate','comExt','layer'], function(){
+    var form = layui.form
+    ,laydate = layui.laydate
+    ,layer = parent.layer === undefined ? layui.layer : top.layer
+    ,$ = layui.jquery
+    ,comExt = layui.comExt;
+       
+    laydate.render({
+      elem: '#LAY-component-form-group-date',
+    });
+    laydate.render({
+      elem: '#LAY',
+    });
+
+
+
+
+    /* 自定义验证规则 该页面目前没有用到（跟据需求添加校验规则）*/
+    form.verify({
+      title: function(value){
+        if(value.length < 5){
+          return '标题至少得5个字符啊';
+        }
+      },
+      pass: [/(.+){6,12}$/, '密码必须6到12位'],
+      content: function(value){
+        layedit.sync(editIndex);
+      }
+    });
+    
+	// 登录名检测
+    $('#userName').on('click',function(){
+      var checkLoginName = $('input[name="loginName"]').val();
+      if(checkLoginName.length === 0){
+        layer.msg('请输入有效内容！');
+        return;
+      } else {
+        var oReqData = { loginName: checkLoginName };
+        comExt.ajax({
+          url: "/userInfo/getUserInfoByName",
+          data: JSON.stringify(oReqData),
+          success: function(o) {
+            if (!o.success) {
+              return;
+            } else {
+             layer.msg(o.msg);
+            }
+          },
+        });
+      }
+    });
+
+
+
+    //监听提交
+    form.on("submit(addUser)",function(data){
+    	  var value = {
+    		  ...data.field,
+    		  // enableDate: data.field.enableDate.split('-').join(''),
+    	  	// invalidDate: data.field.invalidDate.split('-').join(''),
+    	  };
+      layer.msg(JSON.stringify(value));
+      comExt.ajax({
+            url: "/parameter/add",
+            data: JSON.stringify(value),
+            success: function(o){
+                if(!o.success) {
+                  return ; 
+                }
+                parent.location.reload();
+                layer.msg("操作成功");
+              },
+        });
+        return false;
+    });
+    
+
+  });
+  </script>
+</body>
+</html>

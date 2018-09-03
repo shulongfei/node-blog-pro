@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>layui树</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all">
+  <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+  <style type="text/css">
+    .form-container .layui-col-md4{
+      margin-bottom: 15px;
+    }
+    .form-container .layui-form-label {
+      /*默认： 80*/
+      /*width: 120px;*/
+    }
+    .form-container .layui-input-block {
+      /*默认：110*/
+      /*margin-left: 150px;*/
+    }
+  </style>
+</head>
+<body>
+
+  <fieldset class="layui-elem-field layui-field-title">
+    <legend>树demo</legend>
+  </fieldset>
+
+    <div class="layui-fluid form-container">
+    <div class="layui-card">
+      <div class="layui-card-body">
+        // layui 原生树: 官方提供 +（一条华丽的分割线）
+        <hr class="layui-bg-orange">
+        <ul id="demo1"></ul>
+        <br>
+        <br>
+
+        // layui 加工树（自定义） +（一条华丽的分割线）
+        <hr class="layui-bg-orange">
+        <ul id="demo2"></ul>
+       
+        
+      </div>
+    </div>
+  </div>
+  <script src="../../../layuiadmin/layui/layui.js"></script>  
+  <script>
+  // 树缺少check（checkbox、radio）选择框、drag（节点拖拽
+  layui.config({
+	    base: '../../../layuiadmin/' //静态资源所在路径
+	  }).use(['form', 'tree', 'layer'], function(){
+      var layer = parent.layer === undefined ? layui.layer : top.layer;
+      layui.tree({
+        elem: '#demo1' //传入元素选择器
+        ,nodes: [{ //节点
+          name: '父节点1'
+          ,spread: true
+          ,alias: "bb"
+          ,id: "123"
+          ,children: [{
+            name: '子节点11'
+          },{
+            name: '子节点12'
+          }]
+        },{
+          name: '父节点2（可以点左侧箭头，也可以双击标题）'
+          ,children: [{
+            name: '子节点21'
+            ,children: [{
+              name: '子节点211'
+            }]
+          }]
+        }]
+        ,click: function(node){
+          console.log(node);
+          layer.msg(node.name); //node即为当前点击的节点数据
+        }
+
+      });
+	   
+	    
+	  });
+  </script>
+</body>
+</html>

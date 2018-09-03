@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>layui</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all">
+  <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+  <style type="text/css">
+  	body {
+  		overflow-y: scroll;
+  	}
+    .form-container .layui-col-md4{
+      margin-bottom: 15px;
+    }
+    .toggleForm {
+      cursor: pointer;
+    }
+    .form-container .layui-form-label {
+      /*默认： 80*/
+      /*width: 120px;*/
+    }
+    .form-container .layui-input-block {
+      /*默认：110*/
+      /*margin-left: 150px;*/
+    }
+  </style>
+</head>
+<body>
+
+  <!-- <fieldset class="layui-elem-field layui-field-title">
+    <legend>页面资源</legend>
+  </fieldset> -->
+
+    <div class="layui-fluid form-container">
+    <div class="layui-card">
+      <div class="layui-card-body">
+        <form class="layui-form">
+          <div class="layui-form-item layui-row">
+           
+            <div class="layui-col-md4">
+              <label class="layui-form-label">主键编号:</label>
+              <div class="layui-input-block">
+                <input name="ResourceId" autocomplete="off" class="layui-input" placeholder="请输入登录名">
+              </div>
+            </div>
+            <div class="layui-col-md4">
+              <label class="layui-form-label">父主键编号:</label>
+              <div class="layui-input-block">
+                <input name="superiorId" autocomplete="off" class="layui-input" placeholder="请输入机构编号">
+              </div>
+            </div>
+
+            <div class="layui-col-md4">
+              <label class="layui-form-label">描述:</label>
+              <div class="layui-input-block">
+                <input name="displayName" autocomplete="off" class="layui-input" placeholder="请输入机构名称">
+              </div>
+            </div>
+                    
+            <div class="layui-form-item layui-row">
+              <div class="layui-col-md4">
+                <label class="layui-form-label">地址:</label>
+                <div class="layui-input-block">
+                  <input name="functionUrl" autocomplete="off" placeholder="请输入地址" class="layui-input">
+                </div>
+              </div>
+              <div class="layui-col-md4">
+                <label class="layui-form-label">状态:</label>
+                <div class="layui-input-block">                 
+                  <select name="status" class="status" lay-verify="required" autocomplete="off" placeholder="请选择状态">
+                    <option value=""></option>
+                    <option value="1">启用</option>
+                    <option value="0">停用</option>
+                  </select>
+                </div>
+              </div>      
+            </div>
+          </div>
+
+          <div class="search"  style="text-align: right; margin-right: 15px;">
+            <div class="layui-inline layui-bottom-space">
+              <a class="layui-btn" data-type="reload">查询</a>
+              <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+          </div>
+
+        </form>
+        
+        <div class="operate-btn layui-bottom-space">
+		    <a class="layui-btn add-user">新增 </a>
+		    <a class="layui-btn update-resource">修改</a>
+		    <!-- <button class="layui-btn" data-type="deleteRows">停用</button> -->
+	    </div>
+        
+              
+        <table class="layui-hide" id="test-table-resetPage" lay-filter="test-table-resetPage"></table>
+        <script type="text/html" id="test-table-bar">
+          <button class="layui-btn layui-btn-md layui-bg-red"  lay-event="del">删除</button> 
+        </script>
+                          
+      </div>
+    </div>
+  </div>
+  <script src="../../../layuiadmin/layui/layui.js"></script>  
+  <script>
+  layui.config({
+	    base: '../../../layuiadmin/' //静态资源所在路径
+	  }).extend({
+		comExt:"lib/comExt",
+	    index: 'lib/index' //主入口模块
+	  }).use(['comExt', 'index', 'manager', 'table'], function(){
+	    var $ = layui.jquery
+	    ,table = layui.table
+	    ,add = layui.manager.add // 新增
+	    ,update = layui.manager.update // 修改
+	    ,deleteRow = layui.manager.deleteRow; // 删除
+	
+
+	    table.render({
+	      elem: '#test-table-resetPage'
+	      ,url : '/pageResource/list'
+
+	      // 加载公司后台数据时释放注释
+	      ,contentType:"application/json;charset=utf-8"
+	      ,method: 'post'
+	      ,limits : [10,15,20,25]
+	      ,limit : 10
+	      ,loading :true
+	      /* ,id: 'userListTable' */
+	      ,request: {
+	        pageName: 'page' 
+	        ,limitName: 'rows' 
+	      }
+	      ,response: {
+	        statusName: 'success' 
+	        ,statusCode: true 
+	        ,msgName: 'msg' 
+	        ,countName: 'obj/total'
+	        ,dataName: 'obj/rows' 
+	      } 
+	      ,page: true
+          ,cols : [[
+              {type: "checkbox"},
+              {field: 'id', title: '主键'},
+              {field: 'superiorId', title: '父级别id'},
+              {field: 'resourceName', title: '图标'},
+              {field: 'resourceLevel', title: '等级'},
+              {field: 'displayName', title: '描述'},
+              {field: 'functionUrl', title: '地址'},
+              {field:'status',title:'状态',align:'center',templet:function(d){return d.status == "1" ? "启用" : "停用" ;}},
+              {field: 'resourceType', title: '资源'},
+              {title:"操作",align:'center', fixed: 'right', width:105, toolbar:"#test-table-bar"}
+          ]]
+	    });
+
+	    
+
+	    // 表单提交当数据量较大时，推荐使用form.on('submit(searchIfo)', function(data){}
+	    var active = {
+	      reload: function(){ 
+	        $('.search .layui-btn:first-child').on('click', function() {
+	          // var type = $(this).data('type');
+	          // active[type] ? active[type].call(this) : '';
+	          table.reload('test-table-resetPage', {
+	            page: {
+	              curr: 1 //重新从第 1 页开始
+	            }
+	            ,where: {
+	              searchCondition: {
+	                id: $('input[name=ResourceId]').val(), 
+	                superiorId: $('input[name=superiorId]').val(),
+	                displayName: $('input[name=displayName]').val(),
+                  functionUrl: $('input[name=functionUrl]').val(),
+                  status: $('.status option:selected').val(),
+	              },
+	            }
+	          });
+	        });
+	      },
+	      
+	    };
+
+	    // 查询页面资源
+	    active.reload();
+
+	    // 新增页面资源
+	    $(".add-user").click(function() {
+           add('资源新增','resourceAdd.html','点击此处返回用户列表');
+         });
+
+	    // 页面资源修改（加上属性名对应的id及可实现数据返现）
+		$('.update-resource').on('click', function(){
+			update('资源修改','resourceUpdate.html','点此返回列表','test-table-resetPage');
+		});
+
+	    // 监听table内工具条
+	    table.on('tool(test-table-resetPage)', function(obj) {
+	       deleteRow('test-table-resetPage',"/pageResource/delete",'id', obj.data);
+	    });
+
+	    
+	    
+	    
+	    
+	  });
+  </script>
+</body>
+</html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>layui</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all">
+  <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+  <style type="text/css">
+    html {
+      background-color: #f2f2f2;
+      color: #666;
+    }
+    .layui-fluid {
+      padding: 15px;
+    }
+    .form-container .layui-card{
+      min-height: 700px;
+    }
+    .form-container .layui-col-md4{
+      margin-bottom: 15px;
+    }
+    .list-img{
+      width: 160px;
+     /* height: 140px;*/
+      margin: 0 auto;
+      line-height: 125px;
+      padding: 6px;
+      box-sizing: border-box;
+    }
+    .display-img {
+      width: 100%;
+     /* height: 420px;*/
+      margin: 0 auto;
+      margin-top: 20px;
+      border: 1px solid #ddd;
+      padding: 6px;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+    .display-img img, .list-img img{
+      width: 100%;
+      height: 100%;
+    }
+   
+  </style>
+</head>
+<body>
+  <div class="layui-fluid form-container">
+    <div class="layui-row layui-col-space8">
+
+      <div class="layui-col-md8">
+        <div class="layui-card">
+          <div class="layui-card-header">左侧内容模块</div>
+          <div class="layui-card-body">
+            <form class="layui-form">
+              <div class="layui-form-item layui-row">
+                <div class="layui-col-md4">
+                  <label class="layui-form-label">内容一:</label>
+                  <div class="layui-input-block">
+                    <input class="layui-input" lay-verify="required">
+                  </div>
+                </div>
+
+                <div class="layui-col-md4">
+                  <label class="layui-form-label">内容二:</label>
+                  <div class="layui-input-block">
+                    <input class="layui-input" lay-verify="required">
+                  </div>
+                </div>
+              
+                <div class="layui-col-md4">
+                  <label class="layui-form-label">内容三:</label>
+                  <div class="layui-input-block">
+                    <input class="layui-input" lay-verify="required"">
+                  </div>
+                </div>
+                <div class="layui-col-md4">
+                  
+                    <label class="layui-form-label">爱好:</label>
+                    <div class="layui-input-block">
+                      <select name="interest" lay-filter="aihao">
+                        <option value="">请选择</option>
+                        <option value="0">写作</option>
+                        <option value="1" selected="">阅读</option>
+                        <option value="2">游戏</option>
+                        <option value="3">音乐</option>
+                        <option value="4">旅行</option>
+                      </select>
+                    </div>
+                  
+                </div>
+
+                <div class="layui-col-md4">
+                  <label class="layui-form-label">内容六:</label>
+                  <div class="layui-input-block">
+                    <input class="layui-input" lay-verify="required">
+                  </div>
+                </div>
+              
+                <div class="layui-col-md4">
+                  <label class="layui-form-label">内容七:</label>
+                  <div class="layui-input-block">
+                    <input class="layui-input" lay-verify="required"">
+                  </div>
+                </div>
+              </div>
+
+
+              <hr class="layui-bg-gray">
+
+
+              <div class="layui-form-item layui-row">
+                <div class="layui-col-md4">
+                  <label class="layui-form-label">内容一:</label>
+                  <div class="layui-input-block">
+                    <input class="layui-input" lay-verify="required">
+                  </div>
+                </div>
+
+                <div class="layui-col-md4">
+                  <label class="layui-form-label">内容二:</label>
+                  <div class="layui-input-block">
+                    <input class="layui-input" lay-verify="required">
+                  </div>
+                </div>
+              
+                <div class="layui-col-md4">
+                  <label class="layui-form-label">内容三:</label>
+                  <div class="layui-input-block">
+                    <input class="layui-input" lay-verify="required"">
+                  </div>
+                </div>
+                <div class="layui-col-md4">
+                  
+                    <label class="layui-form-label">爱好:</label>
+                    <div class="layui-input-block">
+                      <select name="interest" lay-filter="aihao">
+                        <option value="">请选择</option>
+                        <option value="0">写作</option>
+                        <option value="1" selected="">阅读</option>
+                        <option value="2">游戏</option>
+                        <option value="3">音乐</option>
+                        <option value="4">旅行</option>
+                      </select>
+                    </div>
+                  
+                </div>
+
+                <div class="layui-col-md4">
+                  <label class="layui-form-label">内容六:</label>
+                  <div class="layui-input-block">
+                    <input class="layui-input" lay-verify="required">
+                  </div>
+                </div>
+              
+                <div class="layui-col-md4">
+                  <label class="layui-form-label">内容七:</label>
+                  <div class="layui-input-block">
+                    <input class="layui-input" lay-verify="required"">
+                  </div>
+                </div>
+              </div>
+              
+              
+            </form>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="layui-col-md4">
+        <div class="layui-card">
+          <div class="layui-card-header">右侧内容模块</div>
+          <div class="layui-card-body">
+            <div class="layui-carousel" id="test1" lay-filter="test1">
+              <div carousel-item>
+
+                <div>
+                  <div class="list-img">
+                    <img src="../../../layuiadmin/style/res/login_bg.jpg">
+                  </div>
+                </div>
+
+                <div>
+                  <div class="list-img">
+                    <img src="../../../layuiadmin/style/res/logo-black.png">
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+            <div class="display-img">
+              <img src="../../../layuiadmin/style/res/login_bg.jpg">
+            </div>
+            
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+  <script src="../../../layuiadmin/layui/layui.js"></script>  
+  <script>
+  layui.config({
+	    base: '../../../layuiadmin/' //静态资源所在路径
+	  }).use(['form', 'carousel'], function(){
+
+      // ajax 请求到的数据
+      var data = {
+          "content":[
+              {"regionName":'img1', "url":"../../../layuiadmin/style/res/login_bg.jpg"},
+              {"regionName":'img1', "url":"../../../layuiadmin/style/res/logo-black.png"}
+          ],
+      };
+
+	    var $ = layui.jquery,
+          form = layui.form,
+          carousel = layui.carousel;
+          //建造实例
+          carousel.render({
+            elem: '#test1'
+            ,width: '100%' //设置容器宽度
+            ,arrow: 'always' //始终显示箭头
+            ,autoplay: false //禁止自动切换
+            ,height: '140px'
+            ,indicator: 'none'
+            //,anim: 'updown' //切换动画方式 （上下）
+          });
+
+        //监听轮播切换事件
+        carousel.on('change(test1)', function(obj){ 
+          // 将后台得到的路径复制给图片展示区域
+          var objData = data.content;
+          setTimeout(function(){
+            $('.display-img img').attr('src',objData[obj.index].url);
+          }, 200);
+        }); 
+
+        // 后台交互代码（可参考）
+        // var $ = layui.jquery,
+        // form = layui.form,
+        // carousel = layui.carousel,
+        // data;
+        // 真实数据接口调用    
+        // $.ajax({
+        //   type:'post',
+        //   dataType:'json',
+        //   url:'layuiadmin/data.json',
+        //   success:function(value){
+        //     console.log(value);
+        //     data = value; // 复制到定义的全局变量data中去
+        //     var html = '';
+        //     var displayHtml = '';
+        //     for(var i =0 ; i < value.imgdata.length; i++) {
+        //       html+='<div><div class="list-img"><img src='+value.imgdata[i].url+'></div></div>';
+        //     };
+
+        //     if(value.imgdata.length !== 0) {
+        //       displayHtml = '<img src='+value.imgdata[0].url+'>';
+        //     }
+        //     // 先添加静态页面，在渲染
+        //     $('#test1 .carousel-item').html(html);
+        //     $('.display-img').html(displayHtml);
+        //     // 建造实例
+        //     carousel.render({
+        //       elem: '#test1'
+        //       ,width: '100%' // 设置容器宽度
+        //       ,arrow: 'always' // 始终显示箭头
+        //       ,autoplay: false // 禁止自动切换
+        //       ,height: '140px'
+        //       ,indicator: 'none'
+        //       // anim: 'updown' // 切换动画方式 （上下）
+        //     });
+        //   },
+        //   error:function(){
+        //     alert("请求出错,请检查网络");
+        //   }
+        // });
+    
+	  });
+  </script>
+</body>
+</html>

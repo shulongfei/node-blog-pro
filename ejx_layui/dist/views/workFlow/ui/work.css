@@ -1,0 +1,206 @@
+.demo {
+	/* for IE10+ touch devices */
+	touch-action: none;
+}
+
+.flowchart-demo .window {
+	border: 1px solid #346789;
+	box-shadow: 2px 2px 19px #aaa;
+	-o-box-shadow: 2px 2px 19px #aaa;
+	-webkit-box-shadow: 2px 2px 19px #aaa;
+	-moz-box-shadow: 2px 2px 19px #aaa;
+	-moz-border-radius: 0.5em;
+	border-radius: 0.5em;
+	opacity: 0.8;
+	width: 80px;
+	height: 80px;
+	line-height: 80px;
+	cursor: pointer;
+	text-align: center;
+	z-index: 20;
+	position: absolute;
+	background-color: #eeeeef;
+	color: black;
+	font-family: helvetica, sans-serif;
+	padding: 0.5em;
+	font-size: 0.9em;
+	-webkit-transition: -webkit-box-shadow 0.15s ease-in;
+	-moz-transition: -moz-box-shadow 0.15s ease-in;
+	-o-transition: -o-box-shadow 0.15s ease-in;
+	transition: box-shadow 0.15s ease-in;
+}
+
+.flowchart-demo .window:hover {
+	box-shadow: 2px 2px 19px #444;
+	-o-box-shadow: 2px 2px 19px #444;
+	-webkit-box-shadow: 2px 2px 19px #444;
+	-moz-box-shadow: 2px 2px 19px #444;
+	opacity: 0.6;
+}
+
+.flowchart-demo .active {
+	border: 1px dotted green;
+}
+
+.flowchart-demo .hover {
+	border: 1px dotted red;
+}
+
+#flowchartNode1 {
+	top: 34em;
+	left: 50em;
+}
+
+#flowchartNode2 {
+	top: 23em;
+	left: 10em;
+}
+
+#flowchartNode3 {
+	top: 43em;
+	left: 10em;
+}
+
+#flowchartNode4 {
+	top: 63em;
+	left: 10em;
+}
+
+#flowchartNode5 {
+	top: 83em;
+	left: 10em;
+}
+
+.flowchart-demo .jsplumb-connector {
+	z-index: 4;
+}
+
+.flowchart-demo .jsplumb-endpoint,.endpointTargetLabel,.endpointSourceLabel
+	{
+	z-index: 21;
+	cursor: pointer;
+}
+
+.flowchart-demo .aLabel {
+	background-color: white;
+	padding: 0.4em;
+	font: 12px sans-serif;
+	color: #444;
+	z-index: 21;
+	border: white;
+	opacity: 0.8; /* 设置标签输入框透明度 */
+	cursor: pointer;
+}
+
+.flowchart-demo .aLabel.jsplumb-hover {
+	background-color: #5C96BC;
+	color: white;
+	border: 1px solid white;
+}
+
+.window.jsplumb-connected {
+	border: 2px solid green;
+}
+
+.jsplumb-drag {
+	outline: 4px solid pink !important;
+}
+
+path,.jsplumb-endpoint {
+	cursor: pointer;
+}
+
+.jsplumb-overlay {
+	background-color: transparent;
+}
+
+/** COMMON ELEMENT PROPERTIES **/
+.shape {
+	z-index: 2;
+	opacity: 0.7;
+	position: absolute;
+	cursor: pointer;
+	text-align: center;
+	color: #333;
+}
+
+/** SHAPES **/
+[data_shape=Rectangle] { /*矩形  */
+	overflow:hidden;
+	text-overflow:ellipsis;
+	-o-text-overflow:ellipsis;
+	white-space:nowrap;
+	width:100%;
+	
+	width: 126px;
+	height: 42px;
+	left: 380px;
+	top: 505px;
+	line-height: 42px;
+	background-image: url(../js/themes/icons/node/rectangle.png);
+}
+
+[data_shape=Rectangle_WH] { /*矩形外呼  */
+	overflow:hidden;
+	text-overflow:ellipsis; 	
+	-o-text-overflow:ellipsis;
+	white-space:nowrap;
+	width:100%;
+	/* 其中，overflow: hidden和white-space: nowrap都是必须的否则不会显示省略号；-o-text-overflow: ellipsis针对Opera；
+	而宽度的设定主要是针对IE6；
+	该方法支持Internet Explorer, Safari, Chrome 和 Opera，但FF并不支持，不过可以通过Jquery来实现类似的效果 */
+
+	width: 126px;
+	height: 42px;
+	left: 380px;
+	top: 505px;
+	line-height: 42px;
+	background-image: url(../js/themes/icons/node/rectangle_WH.png);
+}
+/* [data_shape=Ellipse] { 椭圆
+	width: 126px;
+	height: 42px;
+	line-height: 42px;
+	background-image: url(../js/themes/icons/node/ellipse.png);
+} */
+
+[data_shape=Circle-Start] { /* 圆形(起始) */
+	width: 63px;
+	height: 63px;
+	line-height:60px;
+	background-image: url(../js/themes/icons/node/circle_start.png);
+}
+
+[data_shape=Circle-End] { /* 圆形(终止) */
+	span:;
+	width: 63px;
+	height: 63px;
+	line-height: 60px;	
+	background-image: url(../js/themes/icons/node/circle_end.png);
+}
+
+/* [data_shape=Diamond] { 菱形
+	width: 90px;
+	height: 90px;
+	line-height: 90px;
+	background-image: url(../js/themes/icons/node/diamond.png);
+} */
+
+.selected {
+	border: 2px dashed red;
+}
+.shape .company {
+	float:left;
+	padding: 0.1em;
+	font: 8px sans-serif;
+	
+	color: #313131;
+	white-space:normal ;
+}
+.shape .service {
+	float:left;
+	position: absolute;
+	padding-top : 0.2em;
+  	left: 0em;
+	color: #000000;
+}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>用户管理</title>
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all" />
+	<link rel="stylesheet" href="../../../layuiadmin/layui/css/public.css" media="all" />
+	<link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all" />
+</head>
+<body class="childrenBody">
+<div class="layui-card">
+	<div class="layui-card-body">
+	<!-- <blockquote class="layui-elem-quote quoteBox"> -->
+		<form class="layui-form" >
+		<div class=" layui-form-item">
+			<div class="layui-inline">
+			<label class="layui-form-label layui-form-lable-auto">角色编码：</label>
+              <div  class="layui-input-inline">
+                <input type="number" name="roleCode" id="roleCode"  lay-verify="roleCode" autocomplete="off" class="layui-input">
+              </div>
+            </div>
+            <div class="layui-inline">
+              <label class="layui-form-label">角色名称：</label>
+              <div class="layui-input-inline">
+                <input type="text" name="roleName" id="roleName" lay-verify="roleName" autocomplete="off" class="layui-input">
+              </div>
+			</div>
+			<div class="layui-inline">
+						
+                 <button type="button" class="layui-btn  roleSearch" >搜索</button>
+                 <button type="reset" class="layui-btn layui-btn-primary">重置查询</button>
+             	
+					</div>
+           
+			<div class="layui-form-item">
+               
+            </div>
+            	<div  class="layui-bottom-space">
+					<button type="button" class="layui-btn addNews_btn" >
+						新增角色</button>
+					<button type="button" class="layui-btn page_btn" >页面资源</button>
+					<button  type="button" class="layui-btn servet_btn" >服务资源</button>
+				</div>
+			<!-- <div class="layui-inline">
+				<a class="layui-btn layui-btn-normal addNews_btn">新增角色</a>
+			</div>
+			
+			<div class="layui-inline">
+				<a class="layui-btn layui-btn-normal page_btn">页面资源</a>
+			</div>
+			<div class="layui-inline">
+				<a class="layui-btn layui-btn-normal servet_btn">服务资源</a>
+			</div> -->
+			</div>
+		</form>
+<!-- 	</blockquote> -->
+	<table id="roleList" lay-filter="roleList"></table>
+
+	<!--操作-->
+	<script type="text/html" id="roleListBar">
+		<a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
+		
+		<a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">删除</a>
+	</script>
+</form>
+
+</div>
+</div>
+<script type="text/javascript" src="../../../layuiadmin/layui/layui.js"></script>
+<script type="text/javascript" src="roleList.js"></script>
+</body>
+</html>

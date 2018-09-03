@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>boot业务开发</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="/layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="/layuiadmin/style/admin.css" media="all">
+</head>
+<body class="layui-fluid">
+<div class="layui-card">
+	<div class="layui-card-body ">
+	<div  class="layui-bottom-space">
+					<h2>流程测试:</h2>
+				</div>
+				
+			<div class=" operate-btn layui-bottom-space">
+			<button class="layui-btn "  id="json">json响应</button>
+			<button class="layui-btn"  id="xml" >xml响应</button>
+			<button class="layui-btn" id="reqxml">xml请求+响应</button>
+		</div>
+		<p><span id="saw"></span></p>
+		<table id="userList" lay-filter = "userList"></table>
+		<script type="text/html" id="table-bar">
+             	<button class="layui-btn layui-btn-md"   lay-event="detail">测试</button>
+        </script>
+        
+	</div>
+</div>
+ 
+   
+ <script src="/layuiadmin/layui/layui.js?t=1"></script>
+ <script type="text/javascript">
+ layui.config({
+	    base: '/layuiadmin/' //静态资源所在路径
+	  }).extend({
+	    view: 'lib/view' //主入口模块
+	    	,comExt:'lib/comExt'
+	  }).use(['form','table','layer','comExt'],function () {
+				var table = layui.table;
+				var form = layui.form;
+				var $ = layui.$,
+				layer = layui.layer;
+			     $("#json").click(function(){
+			    	 layui.comExt.ajax({
+			                url: "/xmldemo/json",
+			                data: null,
+			                success: function(o){
+			                	
+			    			$("#saw").text(JSON.stringify(o));	
+			                },
+			            })
+			     })
+			     
+			         $("#xml").click(function(){
+			        	  	$.ajax({
+			                    type: "post",
+			                    url: "/xmldemo/xml",
+			                    data:null,
+			                    dataType: "text",
+			                    headers: {
+			                    'Content-Type': 'application/json;charset=utf-8'
+			                    },
+			                    success: function(xml){
+			                    	$("#saw").text(xml);	
+			                       },
+			                });
+			     })
+			     
+			          $("#reqxml").click(function(){
+			        	  var data='<XmlDemo><id>2</id><msg>测试</msg><data>20110214</data></XmlDemo>';
+			        	  	$.ajax({
+			                    type: "post",
+			                    url: "/xmldemo/put",
+			                    data:data,
+			                    dataType: "text",
+			                    headers: {
+			                    'Content-Type':'application/xml;charset=utf-8'
+			                    },
+			                    success: function(xml){
+			                    	$("#saw").text(xml);	
+			                       },
+			                });
+			     })
+
+				 
+	        })
+	        
+	        
+			
+ </script>
+</body>
+</html>

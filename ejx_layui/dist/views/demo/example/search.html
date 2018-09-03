@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>layui</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all">
+  <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+  <style type="text/css">
+    .form-container .layui-col-md4{
+      margin-bottom: 15px;
+    }
+    .religion-show {
+      display: none;
+    }
+    .toggleForm {
+      cursor: pointer;
+    }
+    .form-container .layui-form-label {
+      /*默认： 80*/
+      /*width: 120px;*/
+    }
+    .form-container .layui-input-block {
+      /*默认：110*/
+      /*margin-left: 150px;*/
+    }
+  </style>
+</head>
+<body>
+
+  <fieldset class="layui-elem-field layui-field-title">
+    <legend>查询页面demo</legend>
+  </fieldset>
+
+    <div class="layui-fluid form-container">
+    <div class="layui-card">
+      <div class="layui-card-body">
+        <form class="layui-form">
+          <div class="layui-form-item layui-row">
+            <div class="layui-col-md4">
+              <label class="layui-form-label">请选择省:</label>
+              <div class="layui-input-block">
+                <select name="quiz1">
+                  <option value="">请选择省</option>
+                  <option value="浙江" selected="">浙江省</option>
+                  <option value="你的工号">江西省</option>
+                  <option value="你最喜欢的老师">福建省</option>
+                </select>           
+              </div>
+            </div>
+
+            <div class="layui-col-md4">
+              <label class="layui-form-label">请选择市:</label>
+              <div class="layui-input-block">
+                <select name="quiz2">
+                  <option value="">请选择市</option>
+                  <option value="杭州">杭州</option>
+                  <option value="宁波" disabled="">宁波</option>
+                  <option value="温州">温州</option>
+                  <option value="温州">台州</option>
+                  <option value="温州">绍兴</option>
+                </select>
+              </div>
+            </div>
+          
+            <div class="layui-col-md4">
+              <label class="layui-form-label">请选择县/区:</label>
+              <div class="layui-input-block">
+                <select name="quiz3">
+                  <option value="">请选择县/区</option>
+                  <option value="西湖区">西湖区</option>
+                  <option value="余杭区">余杭区</option>
+                  <option value="拱墅区">临安市</option>
+                </select>
+              </div>
+            </div>
+            <div class="layui-col-md4">
+              <label class="layui-form-label">登录名:</label>
+              <div class="layui-input-block">
+                <input name="loginName" autocomplete="off" class="layui-input" placeholder="请输入登录名">
+              </div>
+            </div>
+            <div class="layui-col-md4">
+              <label class="layui-form-label">机构编号:</label>
+              <div class="layui-input-block">
+                <input name="orgNo" autocomplete="off" class="layui-input" placeholder="请输入机构编号">
+              </div>
+            </div>
+
+            <div class="layui-col-md4">
+              <label class="layui-form-label">机构名称:</label>
+              <div class="layui-input-block">
+                <input name="orgName" autocomplete="off" class="layui-input" placeholder="请输入机构名称">
+              </div>
+            </div>
+          
+          
+
+            <div class="layui-form-item layui-row religion-show">
+              <div class="layui-col-md4">
+                <label class="layui-form-label">机构简称:</label>
+                <div class="layui-input-block">
+                  <input class="layui-input">
+                </div>
+              </div>
+              <div class="layui-col-md4">
+                <label class="layui-form-label">机构简称:</label>
+                <div class="layui-input-block">
+                  <input class="layui-input">
+                </div>
+              </div>
+
+              <div class="layui-col-md4">
+                <label class="layui-form-label">机构名称:</label>
+                <div class="layui-input-block">
+                  <input class="layui-input">
+                </div>
+              </div>
+
+              <div class="layui-col-md4">
+                <label class="layui-form-label">机构简称:</label>
+                <div class="layui-input-block">
+                  <input class="layui-input">
+                </div>
+              </div>
+              <div class="layui-col-md4">
+                <label class="layui-form-label">机构简称:</label>
+                <div class="layui-input-block">
+                  <input class="layui-input">
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="search"  style="text-align: right; margin-right: 15px;">
+            <div class="layui-inline layui-bottom-space">
+              <a class="layui-btn" data-type="reload">查询</a>
+              <a class="layui-btn layui-btn-primary">重置</a>
+              <a class="toggleForm">
+                展开
+                <i class="layui-icon layui-icon-down" style="line-height: 38px;"></i>
+              </a>
+              
+            </div>
+          </div>
+        </form>
+        <div class="layui-row layui-col-space15">
+          <div class="layui-col-md12">
+            <div class="layui-card">
+              <div style="padding-left: 15px; padding-top: 15px;">
+                <a class="layui-btn add-user">新增 <i class="layui-icon">&#xe654;</i></a>
+              </div>
+              <div class="layui-card-body">
+                <table class="layui-hide" id="test-table-resetPage"></table>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  <script src="../../../layuiadmin/layui/layui.js"></script>  
+  <script>
+  layui.config({
+	    base: '../../../layuiadmin/' //静态资源所在路径
+	  }).extend({
+      comExt: 'lib/comExt',
+	    index: 'lib/index' //主入口模块
+	  }).use(['comExt','index', 'manager', 'table'], function(){
+	    var $ = layui.jquery
+	    ,addIframe = layui.manager.add
+	    ,table = layui.table;
+	    table.render({
+	      elem: '#test-table-resetPage'
+	      ,url : '/userInfo/getUserInfoList'
+	      // 加载公司后台数据时释放注释
+	      ,contentType:"application/json;charset=utf-8"
+	      ,method: 'post'
+	      ,limits : [10,15,20,25]
+	      ,limit : 10
+	      ,loading :true
+	      /* ,id: 'userListTable' */
+	      ,request: {
+	        pageName: 'page' 
+	        ,limitName: 'rows' 
+	      }
+	      ,response: {
+	        statusName: 'success' 
+	        ,statusCode: true 
+	        ,msgName: 'msg' 
+	        ,countName: 'obj/jsonData/total' 
+	        ,dataName: 'obj/jsonData/rows' 
+	      } 
+	      ,page: true
+          ,cols : [[
+              {type: "checkbox", fixed:"left", width:50},
+              {field: 'userId', title: '用户编号'},
+              {field: 'loginName', title: '登录名'},
+              {field: 'userName', title: '用户姓名'},
+              {field: 'orgNo', title: '机构代码'},
+              {field: 'orgName', title: '机构名称'},
+              {field: 'phone', title: '手机号码'},
+              {field: 'enableDate', title: '启用日期'},
+              {field: 'invalidDate', title: '失效日期'},
+              {title: '操作', templet:'#userListBar',fixed:"right"}
+          ]]
+	    });
+
+	    
+
+	    // 表单提交当数据量较大时，推荐使用form.on('submit(searchIfo)', function(data){}
+	    var active = {
+
+	      reload: function(){ 
+	        $('.search .layui-btn:first-child').on('click', function(){
+	          // var type = $(this).data('type');
+	          // active[type] ? active[type].call(this) : '';
+	          table.reload('test-table-resetPage', {
+	            page: {
+	              curr: 1 //重新从第 1 页开始
+	            }
+	            ,where: {
+	              searchCondition: {
+	                loginName: $('input[name=loginName]').val(), // 向后台提交的内容，格式可自定
+	                orgName: $('input[name=orgName]').val(),
+	                orgNo: $('input[name=orgNo]').val(),
+	              },
+	            }
+	          });
+	        });
+	      },
+		  // 展开/收缩
+	      toggleForm: function() {
+	        $('.toggleForm').on('click', function(){
+	          var htmlDown = '<a class="toggleForm">收起 <i class="layui-icon layui-icon-up" style="line-height: 38px;"></i></a>';
+	          var htmlUp = '<a class="toggleForm">展开 <i class="layui-icon layui-icon-down" style="line-height: 38px;"></i></a>';
+	          var _toggle = $('.religion-show');
+	            if (_toggle.css('display') === 'none') {
+	              _toggle.css('display', 'block');
+	              $(this).html(htmlDown);
+	            } else {
+	              _toggle.css('display', 'none');
+	              $(this).html(htmlUp);
+	            }
+	        });
+	      },	  
+	      
+	      // 添加用户
+	      addUser: function(edit){
+	        $(".add-user").click(function(){
+	        	  addIframe('用户信息','addUser.html','点击此处返回用户列表');
+	         });
+	       }
+	      
+	    };
+	    
+	    active.toggleForm();
+	    active.reload();
+	    active.addUser();
+	  });
+  </script>
+</body>
+</html>
