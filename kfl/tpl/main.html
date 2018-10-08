@@ -1,0 +1,47 @@
+<!--页头-->
+<div ng-include="'tpl/include/header.html'"></div>
+<!-- 列表 -->
+<div class="container">
+  <!-- 输入框-->
+  <div class="form-group has-feedback">
+    <input type="text"
+           ng-model="kw"
+           class="form-control"
+           placeholder="请输入图书或者相关资料的名称"/>
+  <span class="form-control-feedback
+  glyphicon glyphicon-search">
+  </span>
+  </div>
+  <!-- 列表-->
+  <div class="list-group">
+    <a
+      ng-repeat="dish in dishList"
+      class="list-group-item"
+      href="#/kflDetail/{{dish.did}}">
+      <div class="media">
+        <div class="media-left media-middle">
+          <img
+            class="media-object"
+            ng-src="img/{{dish.img_sm}}" alt=""/>
+        </div>
+        <div class="media-body">
+          <h4>{{dish.name}}</h4>
+          <p>{{dish.material}}</p>
+          <p>{{dish.price | currency:'￥'}}</p>
+        </div>
+      </div>
+    </a>
+  </div>
+  <button
+    ng-show="hasMore"
+    ng-click="loadMore()"
+    class="btn btn-success btn-block">
+    加载更多
+  </button>
+  <p ng-hide="hasMore">没有更多数据可以加载了</p>
+
+</div>
+
+
+<!--页尾-->
+<div ng-include="'tpl/include/footer.html'"></div>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="css/header_and_footer.css"/>
+    <style type="text/css">
+        #box {
+            margin-top: 100px; margin-left: 100px;
+        }
+        #box .box-col1{
+            margin-top:50px;
+            margin-bottom: 10px;
+
+        }
+        #box .box-col2 {
+            margin-bottom: 20px;
+        }
+        #box .box-col1  li, #box .box-col2 li{
+            width: 60px;
+            height: 24px;
+            text-align: center; 
+            float: left
+
+        }
+
+        .box-col1  li a, .box-col2 li a {
+            display: inline-block; width: 50px; margin: 0 auto; padding: 5px;
+            border-radius: 5px;
+        }
+
+        .active {
+            background: pink;
+        }
+        .nav {
+            height: 20px;
+            line-height: 20px;
+            font-size: 26px;
+        }
+        .content {
+            height: 100px;
+            width: 300px;
+            background: #ddd;
+            padding: 10px;
+        }
+
+        #box2 {
+            width: 220px;
+            height: 200px;
+            background-color: blue;
+            margin-left: 100px; 
+            margin-top: 20px;
+            position: relative;
+
+        }
+        .circle {
+            width: 140px;
+            height: 140px;
+            position: absolute;
+            left: 40px;
+            top: 30px;
+            border-radius: 50%;
+            border: 1px solid #ddd;
+            font-size: 22px;
+            line-height: 140px; 
+            text-align: center;
+        }
+
+        #btn {
+            margin-left: 100px;
+            margin-top: 20px;
+            width: 80px
+            height: 30px;
+            background: #ddd;
+        }
+
+        .timeWarnging {
+            color:red;
+        }
+
+        .circle-out {
+            position: absolute;
+            left: 30px;
+            top: 20px;
+
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            /*border: 3px solid red;*/
+            font-size: 22px;
+            line-height: 160px; 
+            text-align: center;
+            -webkit-animation: rotation 5s linear infinite;
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#000000), color-stop(2%,#ffffff));
+        }
+        @-webkit-keyframes rotation{
+          from {-webkit-transform: rotate(0deg);}
+          to {-webkit-transform: rotate(360deg);}
+        }
+        .a {
+            float: left;
+        }
+
+
+    </style>
+</head>
+<body>
+
+<div id="box">
+    <ul class="box-col1 clear"> </ul>
+    <ul class="box-col2 clear"></ul>
+    <div class="content">
+        <div class="nav">1 > 2</div>
+        <br>
+        <div>
+            图片1
+        </div>
+    </div>
+</div>
+
+<div id="box2">
+    <div class="circle-out"></div>
+    <div id="time" class="circle">时间</div> 
+</div>
+<button id="btn" class="pause">停止 </button>
+
+<script src="js/jquery-1.11.3.js"></script>
+<script>
+    // 方法入口
+    $(function(){
+        // 第一列数据刷新
+        innerHtml1();
+        // 第二列数据刷新
+        innerHtml2();
+        // 启动计时器
+        task();
+
+    });
+    var value1 = [
+        {
+            count: '1-10',
+            children: [1,2,3,4,5,6,7,8,9,10]
+        },
+        {
+            count: '11-20',
+            children: [11,12,13,14,15,16,17,18,19,20]
+        },
+        {
+            count: '21-30',
+            children: [31,32,33,34,35,36,37,38,39,40]
+        } 
+
+    ]
+    // 该数据表示总的栋数
+    var dataCount = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,31,32,33,34,35,36,37,38,39,40];
+
+    function innerHtml1() {
+        var html = '<li><a class="active" href="#">全部</a></li>'
+
+        for(var i=0; i<value1.length; i++) {
+            html += '<li><a href="#">'+value1[i].count+'</a></li>';
+        }
+
+        $('.box-col1').html(html);
+    }
+
+    function innerHtml2() {
+        var html = '<li><a class="active" href="#">全部</a></li>'
+        for(var i=0; i<dataCount.length; i++) {
+            html += '<li><a href="#">'+dataCount[i]+'</a></li>';
+        }
+        $('.box-col2').html(html);
+        $('.box-col1').on('click', 'li a', function(e){
+            e.preventDefault();
+            var value = this.innerHTML;
+            if( value == '1-10') {
+                scir(0);
+            } else if(value == '11-20') {
+                scir(1);
+            } else if(value == '21-30') {
+                scir(2);
+            } else {
+                html = '<li><a class="active" href="#">全部</a></li>'
+                for(var i=0; i<dataCount.length; i++) {
+                    html += '<li><a href="#">'+dataCount[i]+'</a></li>';
+                }
+                $('.box-col2').html(html);
+            }
+        });
+    }
+
+    // 循环显示
+    function scir(n) {
+        html = '<li><a class="active" href="#">全部</a></li>'      
+        if(n == 0) {
+            var valueData = value1[0].children;
+        } else if(n == 1) {
+            var valueData = value1[1].children;
+        } else if(n == 2) {
+            var valueData = value1[2].children;
+        }
+        for(var i=0; i<valueData.length; i++) {
+            html += '<li><a href="#">'+valueData[i]+'</a></li>';
+        }
+        $('.box-col2').html(html);
+    }
+
+    
+    //任务函数
+    function task(){
+      var end=new Date("2018/9/18 16:30:00");
+      var now=new Date();
+      // console.log(1111);
+      // 反过来倒计时
+      var s=parseInt((now - end)/1000);
+      var span=$("#time");
+      if(s>0){
+        var d=parseInt(s/3600/24);
+        if(d<10) d="0"+d;
+        //s/3600/24,再下取整
+        var h=parseInt(s%(3600*24)/3600);
+        if(h<10) h="0"+h;
+        //s/(3600*24)的余数/3600下取整
+        var m=parseInt(s%3600/60);
+        if(m<10) m="0"+m;
+        //s/3600的余数,再/60，再下取整
+        s%=60;//s/60的余数
+        if(s<10) s="0"+s;
+        var html = h+":"+m+":"+s;
+        span.html(html);
+      }
+      else{
+        //停止定时器，清空timer，提示结束
+        clearInterval(timer);
+        timer=null;
+        span.html('停止');
+      }
+    }
+
+    var timer=setInterval(task,1000);
+    $('#btn').on('click', function(){
+       //如果有定时器在运行着
+       if(timer!=null){
+         clearInterval(timer);
+         timer=null;
+         $('#time').addClass('timeWarnging')
+       }else{
+         timer=setInterval(task,1000);
+         $('#time').removeClass('timeWarnging')
+       }
+    });
+    
+
+
+
+</script>
+</body>
+</html>

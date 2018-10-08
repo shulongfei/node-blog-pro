@@ -1,0 +1,32 @@
+<div ng-include="'tpl/include/header.html'"></div>
+
+<div class="container">
+
+  <table class="table">
+    <thead>
+    <tr>
+      <th>订单编号</th>
+      <th>书籍信息信息</th>
+      <th>下单时间</th>
+      <th>联系人</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="order in orderList">
+      <td>{{order.oid}}</td>
+      <td>
+        <a href="#/kflDetail/{{order.did}}">
+          <img class="img-responsive" ng-src="img/{{order.img_sm}}"
+            alt=""/>
+        </a>
+      </td>
+      <td>{{order.order_time | date:'yy-MM-dd hh:mm'}}</td>
+      <td>{{order.user_name}}</td>
+    </tr>
+
+    </tbody>
+  </table>
+
+</div>
+
+<div ng-include="'tpl/include/footer.html'"></div>
