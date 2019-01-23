@@ -1,0 +1,19 @@
+{
+  "name": "node-blog-pro",
+  "version": "1.0.0",
+  "description": "node ejs blog",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shulongfei/bnode-blog-pro.git"
+  },
+  "author": "shu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shulongfei/node-blog-pro/issues"
+  },
+  "homepage": "https://github.com/shulongfei/node-blog-pro#readme"
+}
