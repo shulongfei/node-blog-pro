@@ -1,21 +1,17 @@
-const sha1 = require('sha1')
-const express = require('express')
-const router = express.Router()
+const express = require('express');
+const router = express.Router();
 
-// const UserModel = require('../models/users')
-const checkNotLogin = require('../middlewares/check').checkNotLogin
+const checkNotLogin = require('../middlewares/check').checkNotLogin;
+const user = require('../models/user');
 
-// GET /signin 登录页
+// GET /login 登录页
 router.get('/', checkNotLogin, function (req, res, next) {
-  res.render('signin')
-})
+  res.render('login')
+});
 
-// POST /signin 用户登录
+// POST /login 用户登录
 router.post('/', checkNotLogin, function (req, res, next) {
-  const name = req.fields.name
-  // const password = req.fields.password
+  user.login(req, res, next);
+});
 
-  console.log(name);
-})
-
-module.exports = router
+module.exports = router;
