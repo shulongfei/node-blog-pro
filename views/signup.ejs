@@ -1,40 +1,68 @@
 <%- include('header') %>
+<%- include('components/nav') %>
+<div class="container">
+    <div class="col-sm-6">
+        <h1 class="register-title">注&emsp;册</h1>
+        <% if (success) { %>
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <%= success %>
+        </div>
+        <% } %>
+        <% if (error) { %>
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <%= error %>
+        </div>
+        <% } %>
+        <form method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="exampleInputEmail1">用户名</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" name="name" placeholder="用户名">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">密码</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="密码">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword2">重复密码</label>
+                <input type="password" class="form-control" id="exampleInputPassword2" name="repassword" placeholder="重复密码">
+            </div>
+            <div class="form-group">
+                <label class="radio-inline">
+                    <input type="radio" name="gender" value="m" checked> 男
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="gender" value="f"> 女
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="gender" value="x"> 保密
+                </label>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputFile">上传头像</label>
+                <input type="file" name="avatar" id="exampleInputFile">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">简介</label>
+                <textarea name="bio" class="form-control" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">注 册</button>
+        </form>
+    </div>
+    <div class="col-sm-2"></div>
+    <div class="col-sm-4">
+        简介信息
+        <br>
+        ***作用
+    </div>
 
-<div class="ui grid">
-  <div class="four wide column"></div>
-  <div class="eight wide column">
-    <form class="ui form segment" method="post" enctype="multipart/form-data">
-      <div class="field required">
-        <label>用户名</label>
-        <input placeholder="用户名" type="text" name="name">
-      </div>
-      <div class="field required">
-        <label>密码</label>
-        <input placeholder="密码" type="password" name="password">
-      </div>
-      <div class="field required">
-        <label>重复密码</label>
-        <input placeholder="重复密码" type="password" name="repassword">
-      </div>
-      <div class="field required">
-        <label>性别</label>
-        <select class="ui compact selection dropdown" name="gender">
-          <option value="m">男</option>
-          <option value="f">女</option>
-          <option value="x">保密</option>
-        </select>
-      </div>
-      <div class="field required">
-        <label>头像</label>
-        <input type="file" name="avatar">
-      </div>
-      <div class="field required">
-        <label>个人简介</label>
-        <textarea name="bio" rows="5"></textarea>
-      </div>
-      <input type="submit" class="ui button fluid" value="注册">
-    </form>
-  </div>
 </div>
-
 <%- include('footer') %>
+
+
+
