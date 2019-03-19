@@ -7,7 +7,7 @@ CREATE TABLE user(
   id INT PRIMARY KEY AUTO_INCREMENT,
   name VARCHAR(32),
   password VARCHAR(64),
-  avatar VARCHAR(32),
+  avatar VARCHAR(64),
   gender VARCHAR(32),
   bio VARCHAR(250)
 );
@@ -15,9 +15,9 @@ CREATE TABLE user(
 CREATE TABLE article(
   article_id INT PRIMARY KEY AUTO_INCREMENT,
   author_id INT,
-  author VARCHAR(32),
   title VARCHAR(32),
   content VARCHAR(255),
+  create_time DATETIME,
   pv BIGINT
 );
 

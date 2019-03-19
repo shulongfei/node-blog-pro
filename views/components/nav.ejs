@@ -1,10 +1,37 @@
-<div class="nav">
-  <div class="ui grid">
-    <div class="four wide column"></div>
+<nav class="navbar navbar-inverse">
 
-    <div class="eight wide column">
-      <a href="/posts"><h1><%= blog.title %></h1></a>
-      <p><%= blog.description %></p>
-    </div>
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <span class="navbar-brand glyphicon glyphicon-menu-hamburger" id="toggleSidebar"></span>
+    <a class="navbar-brand" href="index.html">系统框架</a>
   </div>
-</div>
+
+  <div id="navbar" class="navbar-collapse collapse">
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="#">主题</a></li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">用户 <span class="caret"></span></a>
+
+        <ul class="dropdown-menu">
+          <% if (user) { %>
+          <li><a href="/posts?author=<%= user.id %>">个人主页</a></li>
+          <li><a href="/posts/create">发表文章</a></li>
+          <li><a href="/signout">退出</a></li>
+          <% } else { %>
+          <li><a href="/signin">登录</a></li>
+          <li><a href="/signup">注册</a></li>
+          <% } %>
+        </ul>
+
+      </li>
+    </ul>
+    <form class="navbar-form navbar-right">
+      <input class="form-control" placeholder="Search...">
+    </form>
+  </div>
+</nav>
