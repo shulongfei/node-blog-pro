@@ -1,6 +1,15 @@
 <%- include('header') %>
-<%- include('components/nav') %>
 
-<div>主页</div>
+<%- include('components/nav') %>
+<% posts.forEach(function (post) { %>
+<%- include('components/post-content', { post: post }) %>
+<% }) %>
+
+<div id="box2">
+    <br>
+    <br>
+    <div>距离放假：</div>
+    <div id="time" class="circle" style="font-size: 18px;">时间</div>
+</div>
 
 <%- include('footer') %>
