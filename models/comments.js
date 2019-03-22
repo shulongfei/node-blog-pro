@@ -1,50 +1,90 @@
-const marked = require('marked')
-const Comment = require('../lib/mongo').Comment
+/**
+ * Created by shu on 2019/1/15.
+ */
+const express = require('express');
+const router = express.Router();
 
-// 将 comment 的 content 从 markdown 转换成 html
-Comment.plugin('contentToHtml', {
-  afterFind: function (comments) {
-    return comments.map(function (comment) {
-      comment.content = marked(comment.content)
-      return comment
+const checkLogin = require('../middlewares/check').checkLogin;
+const listModel = require('../models/list');
+
+// GET /posts 所有用户或者特定用户的文章页
+//   eg: GET /posts?author=xxx
+router.get('/', function (req, res, next) {
+  // res.render('list');
+  listModel.list(function (list) {
+    res.render('list', {
+      list: list
     })
+  })
+});
+
+// POST /posts/create 发表一篇文章
+router.post('/add', checkLogin, function (req, res, next) {
+  const author = req.session.user.id;
+  const title = req.fields.title;
+  const content = req.fields.content;
+
+  // 校验参数
+  try {
+    if (!title.length) {
+      throw new Error('请填写标题');
+    }
+    if (!content.length) {
+      throw new Error('请填写内容');
+    }
+  } catch (e) {
+    req.flash('error', e.message);
+    return res.redirect('back')
   }
+
+  let post = {
+    author: author,
+    title: title,
+    content: content
+  };
+
+  PostModel.createArticle(post, function (result) {
+    // 此 post 是插入 mongodb 后的值，包含 _id
+    post = result.ops[0];
+    req.flash('success', '发表成功');
+    // 发表成功后跳转到该文章页
+
+    res.redirect(`/posts/${post._id}`);
+  });
+
+});
+
+// GET /posts/create 发表文章页
+router.get('/create', checkLogin, function (req, res, next) {
+  // res.send('发表文章页')
+  res.render('create')
+});
+
+// GET /posts/:postId 单独一篇的文章页
+router.get('/:postId', function (req, res, next) {
+  res.send('文章详情页')
+});
+
+// GET /posts/:postId/edit 更新文章页
+router.get('/:postId/edit', checkLogin, function (req, res, next) {
+  res.send('更新文章页')
+});
+
+// POST /posts/:postId/edit 更新一篇文章
+router.post('/:postId/edit', checkLogin, function (req, res, next) {
+  res.send('更新文章')
 })
 
-module.exports = {
-  // 创建一个留言
-  create: function create (comment) {
-    return Comment.create(comment).exec()
-  },
+// GET /posts/:postId/remove 删除一篇文章
+router.get('/:postId/remove', checkLogin, function (req, res, next) {
+  res.send('删除文章')
+});
 
-  // 通过留言 id 获取一个留言
-  getCommentById: function getCommentById (commentId) {
-    return Comment.findOne({ _id: commentId }).exec()
-  },
 
-  // 通过留言 id 删除一个留言
-  delCommentById: function delCommentById (commentId) {
-    return Comment.deleteOne({ _id: commentId }).exec()
-  },
 
-  // 通过文章 id 删除该文章下所有留言
-  delCommentsByPostId: function delCommentsByPostId (postId) {
-    return Comment.deleteMany({ postId: postId }).exec()
-  },
 
-  // 通过文章 id 获取该文章下所有留言，按留言创建时间升序
-  getComments: function getComments (postId) {
-    return Comment
-      .find({ postId: postId })
-      .populate({ path: 'author', model: 'User' })
-      .sort({ _id: 1 })
-      .addCreatedAt()
-      .contentToHtml()
-      .exec()
-  },
 
-  // 通过文章 id 获取该文章下留言数
-  getCommentsCount: function getCommentsCount (postId) {
-    return Comment.count({ postId: postId }).exec()
-  }
-}
+
+
+
+module.exports = router;
