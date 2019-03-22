@@ -1,90 +1,58 @@
-/**
- * Created by shu on 2019/1/15.
- */
-const express = require('express');
-const router = express.Router();
+const marked = require('marked');
+const pool = require('../lib/pool');
 
-const checkLogin = require('../middlewares/check').checkLogin;
-const listModel = require('../models/list');
+var userList = {
+  add: 'insert into user(username, password) values(?, ?)',
+  deleteById: 'delete from user where id = ?',
+  update: 'update user set username=?, password=? where id=?',
+  list: 'select * from user',
+  getById: 'select * from user where id = ?'
+};
 
-// GET /posts 所有用户或者特定用户的文章页
-//   eg: GET /posts?author=xxx
-router.get('/', function (req, res, next) {
-  // res.render('list');
-  listModel.list(function (list) {
-    res.render('list', {
-      list: list
-    })
-  })
-});
-
-// POST /posts/create 发表一篇文章
-router.post('/add', checkLogin, function (req, res, next) {
-  const author = req.session.user.id;
-  const title = req.fields.title;
-  const content = req.fields.content;
-
-  // 校验参数
-  try {
-    if (!title.length) {
-      throw new Error('请填写标题');
-    }
-    if (!content.length) {
-      throw new Error('请填写内容');
-    }
-  } catch (e) {
-    req.flash('error', e.message);
-    return res.redirect('back')
+module.exports = {
+  add: function (user, callback) {
+    pool.getConnection((err, conn) => {
+      conn.query(userList.add, [user.username, user.password], function (error, result) {
+        if (error) throw error;
+        callback(result);
+        conn.release();
+      });
+    });
+  },
+  list: function (callback) {
+    pool.getConnection((err, conn) => {
+      conn.query(userList.list, function (error, result) {
+        if (error) throw error;
+        callback(result);
+        conn.release();
+      });
+    });
+  },
+  getById: function (id, callback) {
+    pool.getConnection((err, conn) => {
+      conn.query(userList.getById, id, function (error, result) {
+        if (error) throw error;
+        callback(result[0]);
+        conn.release();
+      });
+    });
+  },
+  deleteById: function (id, callback) {
+    pool.getConnection((err, conn) => {
+      conn.query(userList.deleteById, id, id, function (error, result) {
+        if (error) throw error;
+        callback(result[0]);
+        conn.release();
+      });
+    });
+  },
+  update: function (user, callback) {
+    pool.getConnection((err, conn) => {
+      conn.query(userList.update, [user.username, user.password, user.id], function (error, result) {
+        if (error) throw error;
+        callback(result[0]);
+        conn.release();
+      });
+    });
   }
-
-  let post = {
-    author: author,
-    title: title,
-    content: content
-  };
-
-  PostModel.createArticle(post, function (result) {
-    // 此 post 是插入 mongodb 后的值，包含 _id
-    post = result.ops[0];
-    req.flash('success', '发表成功');
-    // 发表成功后跳转到该文章页
-
-    res.redirect(`/posts/${post._id}`);
-  });
-
-});
-
-// GET /posts/create 发表文章页
-router.get('/create', checkLogin, function (req, res, next) {
-  // res.send('发表文章页')
-  res.render('create')
-});
-
-// GET /posts/:postId 单独一篇的文章页
-router.get('/:postId', function (req, res, next) {
-  res.send('文章详情页')
-});
-
-// GET /posts/:postId/edit 更新文章页
-router.get('/:postId/edit', checkLogin, function (req, res, next) {
-  res.send('更新文章页')
-});
-
-// POST /posts/:postId/edit 更新一篇文章
-router.post('/:postId/edit', checkLogin, function (req, res, next) {
-  res.send('更新文章')
-})
-
-// GET /posts/:postId/remove 删除一篇文章
-router.get('/:postId/remove', checkLogin, function (req, res, next) {
-  res.send('删除文章')
-});
-
-
-
-
-
-
-
-
-module.exports = router;
+};
