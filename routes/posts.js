@@ -130,6 +130,7 @@ router.post('/:articleId/edit', checkLogin, function (req, res, next) {
     }
     PostModel.updateArticle(article, function () {
       req.flash('success', '编辑文章成功');
+      console.log(11111);
       // 编辑成功后跳转到上一页
       res.redirect(`/posts/${articleId}`)
     });

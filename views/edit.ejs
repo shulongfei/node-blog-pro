@@ -3,7 +3,7 @@
 <div class="ui grid">
   <div class="four wide column">
     <a class="avatar"
-       href="/posts?author=<%= user._id %>"
+       href="/posts?author=<%= user.id %>"
        data-title="<%= user.name %> | <%= ({m: '男', f: '女', x: '保密'})[user.gender] %>"
        data-content="<%= user.bio %>">
       <img class="avatar" src="/img/<%= user.avatar %>">
@@ -11,7 +11,7 @@
   </div>
 
   <div class="eight wide column">
-    <form class="ui form segment" method="post" action="/posts/<%= post._id %>/edit">
+    <form class="ui form segment" method="post" action="/posts/<%= post.article_id %>/edit">
       <div class="field required">
         <label>标题</label>
         <input type="text" name="title" value="<%= post.title %>">
